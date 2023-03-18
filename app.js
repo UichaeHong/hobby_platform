@@ -11,6 +11,9 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 // 나중에 라우팅될 코드 get 요청 이용해서 작성
+app.get("/main", (req, res) => {
+  res.render("main");
+});
 
 //포트 열기
 app.listen(PORT, () => {
