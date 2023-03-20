@@ -4,15 +4,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>메인 페이지입니다</title>
+    <title>메인</title>
     <link rel="stylesheet" href="./../static/css/common.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <style>
       header {
         width: 100%;
-        height: 60px;
-        border-bottom: 1px solid #000;
+        height: 80px;
+        /* border-bottom: 1px solid #000; */
       }
-      header .inner {
+      header .header_inner {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -20,22 +25,321 @@
         height: 100%;
         margin: 0 auto;
       }
-      header .inner .logo {
+      header .header_inner .logo {
         font-weight: 700;
+        font-size: 32px;
+      }
+      .input_style {
+        width: 200px;
+        height: 40px;
+        padding: 0 20px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+      }
+
+      .content {
+        padding-bottom: 100px;
+      }
+
+      .inner {
+        width: 1280px;
+        margin: 0 auto;
+      }
+      footer {
+        background-color: #2a2a2a;
+      }
+      .footer_inner {
+        width: 1280px;
+        margin: 0 auto;
+        padding: 20px 0;
+      }
+      .footer_inner p {
+        color: #fff;
+      }
+      .mySwiper {
+        margin-top: 20px;
+      }
+
+      .swiper {
+        width: 100%;
+        height: 100%;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .category_list {
+        display: flex;
+        margin-top: 60px;
+        gap: 20px;
+      }
+      .category_list li {
+        position: relative;
+        /* height: 40px; */
+      }
+      .category_list li.current {
+        font-size: 18px;
+        font-weight: 700;
+        align-items: flex-end;
+        /* text-decoration: underline; */
+      }
+      .category_list li.current::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        display: inline-block;
+        width: 100%;
+        height: 2px;
+        background-color: #333;
+      }
+      .datalist_wrap {
+        display: flex;
+        width: 100%;
+        gap: 20px;
+        margin-top: 60px;
+      }
+      .datalist_lbox {
+        width: 300px;
+        min-width: 300px;
+      }
+      .datalist {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px 30px;
+      }
+      .datalist li {
+        width: calc(33.3333% - 22px);
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .datalist li:nth-child(3n) {
+        width: calc(33.4% - 22px);
+      }
+      .list_box .img_box {
+        height: 250px;
+      }
+      .list_box .img_box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .list_box .info {
+        padding: 20px;
+      }
+      .list_box .info p {
+        margin-top: 10px;
       }
     </style>
   </head>
   <body>
     <header>
-      <div class="inner">
+      <div class="header_inner">
         <h1 class="logo">
           <a href="#"> 플랫폼 </a>
         </h1>
         <nav>
-          <input type="text" class="input-style" />
+          <input type="text" class="input_style" />
           <a href="#" class="login">로그인</a>
         </nav>
       </div>
     </header>
+    <div class="content">
+      <div class="inner">
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="../static/img/banner-manner_pc.png" alt="" />
+            </div>
+            <div class="swiper-slide">
+              <img src="../static/img/banner-starter_pc.png" alt="" />
+            </div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+        <script>
+          let swiper = new Swiper(".mySwiper", {
+            pagination: {
+              el: ".swiper-pagination",
+              type: "fraction",
+            },
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+            autoplay: true,
+          });
+        </script>
+
+        <ul class="category_list">
+          <li class="current"><a href="#">카테고리1</a></li>
+          <li><a href="#">카테고리2</a></li>
+          <li><a href="#">카테고리3</a></li>
+          <li><a href="#">카테고리4</a></li>
+          <li><a href="#">카테고리5</a></li>
+          <li><a href="#">카테고리6</a></li>
+          <li><a href="#">카테고리7</a></li>
+        </ul>
+
+        <div class="datalist_wrap">
+          <div class="datalist_lbox">달력 부분</div>
+          <div class="datalist_rbox">
+            <ul class="datalist">
+              <li>
+                <div class="list_box">
+                  <div class="img_box">
+                    <img src="../static/img/ps_11_goalline.jpg" alt="" />
+                  </div>
+                  <div class="info">
+                    <p>상품</p>
+                    <p>상품</p>
+                    <p>상품</p>
+                    <p>상품</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="list_box">
+                  <div class="img_box">
+                    <img src="../static/img/ps_11_goalline.jpg" alt="" />
+                  </div>
+                  <div class="info">
+                    <p>상품</p>
+                    <p>상품</p>
+                    <p>상품</p>
+                    <p>상품</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="list_box">
+                  <div class="img_box">
+                    <img src="../static/img/ps_11_goalline.jpg" alt="" />
+                  </div>
+                  <div class="info">
+                    <p>상품</p>
+                    <p>상품</p>
+                    <p>상품</p>
+                    <p>상품</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="list_box">
+                  <div class="img_box">
+                    <img src="../static/img/ps_11_goalline.jpg" alt="" />
+                  </div>
+                  <div class="info">
+                    <p>상품</p>
+                    <p>상품</p>
+                    <p>상품</p>
+                    <p>상품</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="list_box">
+                  <div class="img_box">
+                    <img src="../static/img/ps_11_goalline.jpg" alt="" />
+                  </div>
+                  <div class="info">
+                    <p>상품</p>
+                    <p>상품</p>
+                    <p>상품</p>
+                    <p>상품</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="list_box">
+                  <div class="img_box">
+                    <img src="../static/img/ps_11_goalline.jpg" alt="" />
+                  </div>
+                  <div class="info">
+                    <p>상품</p>
+                    <p>상품</p>
+                    <p>상품</p>
+                    <p>상품</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="list_box">
+                  <div class="img_box">
+                    <img src="../static/img/ps_11_goalline.jpg" alt="" />
+                  </div>
+                  <div class="info">
+                    <p>상품</p>
+                    <p>상품</p>
+                    <p>상품</p>
+                    <p>상품</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="list_box">
+                  <div class="img_box">
+                    <img src="../static/img/ps_11_goalline.jpg" alt="" />
+                  </div>
+                  <div class="info">
+                    <p>상품</p>
+                    <p>상품</p>
+                    <p>상품</p>
+                    <p>상품</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="list_box">
+                  <div class="img_box">
+                    <img src="../static/img/ps_11_goalline.jpg" alt="" />
+                  </div>
+                  <div class="info">
+                    <p>상품</p>
+                    <p>상품</p>
+                    <p>상품</p>
+                    <p>상품</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="footer_inner">
+        <p>내용</p>
+        <p>내용</p>
+        <p>내용</p>
+        <p>내용</p>
+        <p>내용</p>
+        <p>내용</p>
+        <p>내용</p>
+        <p>내용</p>
+        <p>내용</p>
+        <p>내용</p>
+        <p>내용</p>
+      </div>
+    </footer>
   </body>
 </html>
