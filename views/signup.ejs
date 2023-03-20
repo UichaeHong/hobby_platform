@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SignUp</title>
+    <link rel="stylesheet" href="../static/css/common.css" />
+    <script src="../static/js/signup.js" defer></script>
+    <style>
+      header {
+        width: 100%;
+        height: 60px;
+        border-bottom: 1px solid #000;
+      }
+      header .inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 1280px;
+        height: 100%;
+        margin: 0 auto;
+      }
+      header .inner .logo {
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 헤더 -->
+    <header>
+      <div class="inner">
+        <h1 class="logo">
+          <a href="#"> 플랫폼 </a>
+        </h1>
+        <nav>
+          <input type="text" class="input-style" />
+          <a href="#" class="login">로그인</a>
+        </nav>
+      </div>
+    </header>
+    <!-- 메인 -->
+    <main>
+      <div class="main_container">
+        <div class="imgs slide_signup_img"></div>
+        <div class="signup_form">
+          <form action="/signup" method="POST">
+            <!-- 타이틀 -->
+            <div class="form_title">
+              <h2>혼자하기 싫을땐?</h2>
+              <h2 id="hobby">HOBBY하자</h2>
+            </div>
+            <!-- 인풋 -->
+            <div class="input_container">
+              <div class="form_input">
+                <span>이메일</span>
+                <input type="email" name="id" placeholder="이메일" />
+              </div>
+              <div class="form_input">
+                <span>비밀번호</span>
+                <input class="pwd" type="password" name="pw" placeholder="비밀번호" />
+                <span>비밀번호 확인</span>
+                <input class="check_pwd" type="password" placeholder="비밀번호 확인" />
+              </div>
+              <div class="form_input">
+                <span>이름</span>
+                <input type="text" name="name" placeholder="이름" />
+              </div>
+              <div class="form_input">
+                <span>성별</span>
+                <select class="form_input" value="남자" name="gender">
+                  <option>남자</option>
+                  <option>여자</option>
+                </select>
+              </div>
+              <div class="form_input">
+                <span>생년월일</span>
+                <input type="date" name="birthday" />
+              </div>
+            </div>
+            <!-- 버튼 -->
+            <button type="submit" class="form_button">회원가입</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

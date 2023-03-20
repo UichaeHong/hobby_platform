@@ -1,10 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
+    <link rel="stylesheet" href="../static/css/common.css" />
+    <!-- <script src="../static/js/login.js" defer></script> -->
+    <style>
+      header {
+        width: 100%;
+        height: 60px;
+        border-bottom: 1px solid #000;
+      }
+      header .inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 1280px;
+        height: 100%;
+        margin: 0 auto;
+      }
+      header .inner .logo {
+        font-weight: 700;
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <!-- 헤더 -->
+    <header>
+      <div class="inner">
+        <h1 class="logo">
+          <a href="#"> 플랫폼 </a>
+        </h1>
+        <nav>
+          <input type="text" class="input-style" />
+          <a href="#" class="login">로그인</a>
+        </nav>
+      </div>
+    </header>
+    <!-- 메인 -->
+    <main>
+      <div class="main_container">
+        <div class="imgs slide_login_img"></div>
+        <div class="login_form">
+          <form action="/login" method="post">
+            <!-- 타이틀 -->
+            <div class="form_title">
+              <h2>혼자하기 싫을땐?</h2>
+              <h2 id="hobby">HOBBY하자</h2>
+            </div>
+            <!-- 인풋 -->
+            <div class="input_container">
+              <div class="form_input">
+                <input type="email" name="id" placeholder="이메일" id="form_input_id" />
+              </div>
+              <div class="form_input">
+                <input type="password" name="pw" placeholder="비밀번호" id="form_input_pw" />
+              </div>
+            </div>
+            <!-- 버튼 -->
+            <button onclick="tryLogin()" class="form_button">로그인</button>
+          </form>
+          <!-- 자잘한거 -->
+          <div class="etc">
+            <span class="find_id">
+              <a href="#">아이디/비밀번호 찾기</a>
+            </span>
+            <span class="signup">
+              <a href="/signup">회원가입</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>
