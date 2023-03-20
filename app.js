@@ -7,8 +7,8 @@ app.set("view engine", "ejs");
 app.set("/views", "views");
 app.use("/static", express.static(__dirname + "/static"));
 
-app.get("/", (req, res) => {
-  res.render("index");
+app.get("/loading", (req, res) => {
+  res.render("loading");
 });
 // 나중에 라우팅될 코드 get 요청 이용해서 작성
 app.get("/main", (req, res) => {
