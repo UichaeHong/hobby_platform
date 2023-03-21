@@ -81,8 +81,29 @@ app.use("/static", express.static(__dirname + "/static"));
 app.get("/", (req, res) => {
   res.render("index");
 });
+// 로딩페이지
 app.get("/loading", (req, res) => {
   res.render("loading");
+});
+
+// 메인페이지(초기 렌더링)
+app.get("/main", (req, result) => {
+  db.collection("Room")
+    .find()
+    .toArray(function (err, res) {
+      console.log(res);
+      result.render("main.ejs", { data: res });
+    });
+});
+
+// 달력 및 인풋 위한 데이터 받아오기
+app.get("/getData", (req, result) => {
+  db.collection("Room")
+    .find()
+    .toArray(function (err, res) {
+      console.log(res);
+      result.send({ data: res });
+    });
 });
 
 // 회원가입
