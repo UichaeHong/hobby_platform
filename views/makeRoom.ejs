@@ -44,7 +44,7 @@
       <div class="main_container">
         <div class="imgs slide_signup_img"></div>
         <div class="signup_form">
-          <form action="/signup" method="POST">
+          <form action="#" method="POST">
             <!-- 타이틀 -->
             <div class="form_title">
               <h2>혼자하기 싫을땐?</h2>
@@ -53,26 +53,28 @@
             <!-- 인풋 -->
             <div class="input_container">
               <div class="form_input">
-                <span id="email">이메일</span>
-                <input type="email" name="id" placeholder="이메일" />
+                <span>제목</span>
+                <input type="text" name="title" placeholder="방제목" />
               </div>
+
               <div class="form_input">
-                <span>비밀번호</span>
-                <input class="pwd" type="password" name="pw" placeholder="비밀번호" />
-              <div class="form_input">
-                <span>이름</span>
-                <input type="text" name="name" placeholder="이름" />
+                <span>날짜</span>
+                <input type="date" name="date" />
               </div>
+
               <div class="form_input">
-                <span>성별</span>
-                <select class="form_input" value="남자" name="gender">
-                  <option>남자</option>
-                  <option>여자</option>
-                </select>
+                <span>장소</span>
+                <input type="text" name="location" placeholder="장소" />
               </div>
+
               <div class="form_input">
-                <span>생년월일</span>
-                <input type="date" name="birthday" />
+                <span>인원</span>
+                <input type="text" name="personnel" placeholder="인원" />
+              </div>
+
+              <div class="form_input">
+                <span>비용</span>
+                <input type="text" name="price" placeholder="비용" />
               </div>
             </div>
             <!-- 버튼 -->

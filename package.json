@@ -6,6 +6,7 @@
     "express-session": "^1.17.3",
     "mongodb": "^3.6.4",
     "nodejs": "^0.0.0",
+    "nodemon": "^2.0.21",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0"
   }
