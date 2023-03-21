@@ -21,6 +21,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
 const { ReplSet } = require("mongodb/lib/core");
+const { currentLogger } = require("mongodb/lib/core/connection/logger");
 
 app.use(session({ secret: "비밀코드", resave: true, saveUninitialized: false }));
 app.use(passport.initialize());
@@ -48,13 +49,13 @@ passport.use(
       passReqToCallback: false,
     },
     function (input_id, input_pw, done) {
-      console.log(input_id, input_pw);
       db.collection("User_Info").findOne({ id: input_id }, function (err, res) {
         if (err) return done(err);
         if (!res) return done(null, false, { messgae: "Not exist" });
         if (input_pw == res.pw) {
           return done(null, res);
         } else {
+          console.log(res);
           return done(null, false, { messgae: "wrong password" });
         }
       });
@@ -89,13 +90,44 @@ app.get("/signup", (req, res) => {
   res.render("signup");
 });
 
-app.post("/signup", (req, res) => {
+// 방만들기
+app.get("/makeRoom", (req, res) => {
+  res.render("makeRoom");
+});
+
+app.post("/signup", async (req, result) => {
   const r = req.body;
   console.log(req.body);
-  db.collection("User_Info").insertOne(
-    { name: r.name, birthday: r.birthday, id: r.id, pw: r.pw, gender: r.gender },
+  // id중복 체크
+  await db.collection("User_Info").findOne({ id: r.id }, function (err, res) {
+    // 중복자 없으면
+    if (res == null) {
+      db.collection("User_Info").insertOne(
+        { name: r.name, birthday: r.birthday, id: r.id, pw: r.pw, gender: r.gender },
+        function (err, res) {
+          console.log("유저정보 저장완료");
+        }
+      );
+      result.redirect("/");
+    } else {
+      console.log("중복자 발견");
+      result.send("<script>location.href='/signup'; alert('ID가 중복되었어요!');</script>");
+    }
+  });
+});
+
+app.post("/makeRoom", (req, res) => {
+  const r = req.body;
+  db.collection("Room").insertOne(
+    {
+      title: r.title,
+      date: r.date,
+      location: r.location,
+      personnel: r.personnel,
+      price: r.price,
+    },
     function (err, res) {
-      console.log("저장완료");
+      console.log("방정보 저장완료");
     }
   );
   res.redirect("/");
