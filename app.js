@@ -31,12 +31,14 @@ app.use(passport.session());
 app.get("/login", (req, res) => {
   res.render("login");
 });
-
+app.get("/login_fail", (req, res) => {
+  res.render("login_fail");
+});
 app.post(
   "/login",
-  passport.authenticate("local", { failureRedirect: "/login" }),
+  passport.authenticate("local", { failureRedirect: "/login_fail" }),
   function (req, res) {
-    res.redirect("/");
+    res.redirect("/main");
   }
 );
 
