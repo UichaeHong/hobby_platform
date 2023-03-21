@@ -80,6 +80,9 @@ app.use("/static", express.static(__dirname + "/static"));
 app.get("/", (req, res) => {
   res.render("index");
 });
+app.get("/loading", (req, res) => {
+  res.render("loading");
+});
 
 // 회원가입
 app.get("/signup", (req, res) => {
