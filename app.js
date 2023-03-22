@@ -36,13 +36,27 @@ app.get("/login", (req, res) => {
 app.get("/login_fail", (req, res) => {
   res.render("login_fail");
 });
+
 app.post(
   "/login",
-  passport.authenticate("local", { failureRedirect: "/login_fail" }),
+  passport.authenticate("local", {
+    failureRedirect: "/login_fail",
+  }),
   function (req, res) {
-    res.redirect("/main");
+    res.render("main");
   }
 );
+
+// app.get("/logout", (req, res, next) => {
+//   req.logOut((err) => {
+//     if (err) {
+//       return next(err);
+//     } else {
+//       console.log("로그아웃됨");
+//       res.redirect("/main");
+//     }
+//   });
+// });
 
 passport.use(
   new LocalStrategy(

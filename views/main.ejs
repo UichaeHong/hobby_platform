@@ -310,32 +310,34 @@
       .tab-content.current {
         display: block;
       }
+
+      #talk{
+        color: red;  
+        cursor : pointer;     
+      }
     </style>
   </head>
   <body>
-  <header>
-    <div class="header_inner">
-      <h1 class="logo">
-        <a href="#">Hobby</a>
-      </h1>
-      <nav>
 
-        <div class="input_search">
-          <input type="text" class="input_style" />
-          <button type="button" class="input_btnsearch">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-        </div>
-        <a href="#" class="login"><i class="fa-solid fa-user-large"></i></a>
+    <header>
+      <div class="header_inner">
+        <h1 class="logo">
+          <a href="/main">Hobby</a>
+        </h1>
+        <nav>
+          <div class="input_search">
+            <input type="text" class="input_style" />
+            <button type="button" class="input_btnsearch">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+          <a href="/login" class="login"><i class="fa-solid fa-user-large"></i></a>
+        </nav>
+      </div>
+    </header>
+    <div class="content">
+      <div class="inner">
 
-        <!-- <input type="text" class="input_style" />
-        <a href="./login" class="login">로그인</a> -->
-
-      </nav>
-    </div>
-  </header>
-  <div class="content">
-    <div class="inner">
         <div class="swiper mySwiper">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
@@ -363,7 +365,7 @@
 
         <ul class="category_list">
           <li value = '0' class="current" data-tab="tab-1"><a href="#">전체보기</a></li>
-          <li value ='1' data-tab="tab-2"><a href="#">축구</a></li>
+          <li value = '1' data-tab="tab-2"><a href="#">축구</a></li>
           <li value = '2' data-tab="tab-3"><a href="#">야구</a></li>
           <li value = '3' data-tab="tab-4"><a href="#">농구</a></li>
           <li value = '4' data-tab="tab-5"><a href="#">배구</a></li>
@@ -402,35 +404,11 @@
                   <tbody></tbody>
                 </table>
               </div>
+              <!-- <i id='talk' class="fa-regular fa-comment fa-2xl"></i> -->
             </div>
             <div class="datalist_rbox">
               <ul class="datalist">
-                <% for(let i=0; i<data.length; i++) { %>
-                  <li>
-                    <a href="#">  
-                      <div class="list_box">
-                        <div class="img_box">
-                          <img src="../static/img/ps_11_goalline.jpg" alt="" />
-                        </div>
-                        <div class="info">
-                          <p class="small_badge">축구</p>
-                          <p class="title">
-                            <%= data[i].title %>
-                          </p>
-                          <p class="date">
-                            <i class="fa-regular fa-calendar"></i
-                            ><strong>날짜</strong> : <%= data[i].date %>
-                          </p>
-                          <p class="person">
-                            <i class="fa-solid fa-person"></i
-                            ><strong>정원</strong> : <%= data[i].personnel%>
-                          </p>
-                        </div>
-                        <div class="badge">신청가능</div>
-                      </div>
-                    </a>
-                  </li>
-                <% } %>
+                
               </ul>
             </div>
           </div>
