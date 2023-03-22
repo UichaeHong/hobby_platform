@@ -6,15 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>메인</title>
     <link rel="stylesheet" href="./../static/css/common.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
     <script
       src="https://kit.fontawesome.com/65a524014b.js"
       crossorigin="anonymous"
     ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    
+
     <style>
       header {
         width: 100%;
@@ -316,6 +319,7 @@
           <a href="#">Hobby</a>
         </h1>
         <nav>
+
           <div class="input_search">
             <input type="text" class="input_style" />
             <button type="button" class="input_btnsearch">
@@ -323,6 +327,10 @@
             </button>
           </div>
           <a href="#" class="login"><i class="fa-solid fa-user-large"></i></a>
+
+          <input type="text" class="input_style" />
+          <a href="./login" class="login">로그인</a>
+
         </nav>
       </div>
     </header>
@@ -363,6 +371,7 @@
           <li data-tab="tab-4"><a href="#">농구</a></li>
           <li data-tab="tab-5"><a href="#">배구</a></li>
         </ul>
+
 
         <div id="tab-1" class="tab-content current">
           <div class="datalist_wrap">
@@ -617,6 +626,29 @@
                 </li>
               </ul>
             </div>
+=======
+        <div class="datalist_wrap">
+          <div class="datalist_lbox">달력 부분</div>
+          <div class="datalist_rbox">
+            <ul class="datalist">
+              <% for(let i=0; i<data.length; i++){ %>
+                <li>
+                  <div class="list_box">
+                    <div class="img_box">
+                      <img src="../static/img/ps_11_goalline.jpg" alt="" />
+                    </div>
+                    <div class="info">
+                      <p>제목: <%=data[i].title %></p>
+                      <p>날짜: <%=data[i].date %></p>
+                      <p>지역: <%=data[i].location %></p>
+                      <p>인원: <%=data[i].personnel %></p>
+                      <p>가격: <%=data[i].price %></p>
+                    </div>
+                  </div>
+                </li>
+              <%} %>
+            </ul>
+
           </div>
         </div>
         <div id="tab-2" class="tab-content"></div>
@@ -640,6 +672,7 @@
         <p>내용</p>
       </div>
     </footer>
+    <script src="../static/js/main.js"></script>
   </body>
   <script>
     window.onload = function () {
