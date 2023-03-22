@@ -14,6 +14,9 @@ app.get("/loading", (req, res) => {
 app.get("/main", (req, res) => {
   res.render("main");
 });
+app.get("/main2", (req, res) => {
+  res.render("main2");
+});
 
 //포트 열기
 app.listen(PORT, () => {
