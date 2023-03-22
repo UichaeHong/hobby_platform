@@ -23,7 +23,9 @@ const session = require("express-session");
 const { ReplSet } = require("mongodb/lib/core");
 const { currentLogger } = require("mongodb/lib/core/connection/logger");
 
-app.use(session({ secret: "비밀코드", resave: true, saveUninitialized: false }));
+app.use(
+  session({ secret: "비밀코드", resave: true, saveUninitialized: false })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -80,8 +82,8 @@ app.set("/views", "views");
 app.use("/static", express.static(__dirname + "/static"));
 
 // 나중에 라우팅될 코드 get 요청 이용해서 작성
-app.get("/", (req, res) => {
-  res.render("index");
+app.get("/DetailedPage", (req, res) => {
+  res.render("DetailedPage");
 });
 // 로딩페이지
 app.get("/loading", (req, res) => {
@@ -129,7 +131,13 @@ app.post("/signup", async (req, result) => {
     // 중복자 없으면
     if (res == null) {
       db.collection("User_Info").insertOne(
-        { name: r.name, birthday: r.birthday, id: r.id, pw: r.pw, gender: r.gender },
+        {
+          name: r.name,
+          birthday: r.birthday,
+          id: r.id,
+          pw: r.pw,
+          gender: r.gender,
+        },
         function (err, res) {
           console.log("유저정보 저장완료");
         }
@@ -137,7 +145,9 @@ app.post("/signup", async (req, result) => {
       result.redirect("/");
     } else {
       console.log("중복자 발견");
-      result.send("<script>location.href='/signup'; alert('ID가 중복되었어요!');</script>");
+      result.send(
+        "<script>location.href='/signup'; alert('ID가 중복되었어요!');</script>"
+      );
     }
   });
 });
