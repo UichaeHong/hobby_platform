@@ -45,20 +45,23 @@ app.post(
     failureRedirect: "/login_fail",
   }),
   function (req, res) {
-    res.render("main");
+    res.render("main_logout");
   }
 );
+app.get("/main_logout", (req, res) => {
+  res.render("main_logout");
+});
 
-// app.get("/logout", (req, res, next) => {
-//   req.logOut((err) => {
-//     if (err) {
-//       return next(err);
-//     } else {
-//       console.log("로그아웃됨");
-//       res.redirect("/main");
-//     }
-//   });
-// });
+app.get("/logout", (req, res, next) => {
+  req.logOut((err) => {
+    if (err) {
+      return next(err);
+    } else {
+      console.log("로그아웃됨");
+      res.send("<script>location.href='/main'; alert('로그아웃 되었습니다!');</script>");
+    }
+  });
+});
 
 passport.use(
   new LocalStrategy(
@@ -82,16 +85,32 @@ passport.use(
     }
   )
 );
+
 // id를 이용해 세션을 저장(로그인 성공시 발동)
 passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
 
 // 마이페이지 접속시
-passport.deserializeUser(function (id, done) {
-  done(null, {});
+passport.deserializeUser(function (email, done) {
+  console.log(11);
+  db.collection("User_Info").findOne({ id: email }, function (err, res) {
+    console.log(res);
+    done(null, res);
+  });
 });
 
+function logined(req, res, next) {
+  console.log(req.user);
+  if (req.user) {
+    next();
+  } else {
+    res.send("<script>location.href='/main'; alert('로그인하세요')</script>");
+  }
+}
+app.get("/DetailedPage", logined, (req, res) => {
+  res.render("DetailedPage");
+});
 // static & views 설정
 app.set("view engine", "ejs");
 app.set("/views", "views");
@@ -166,7 +185,7 @@ app.post("/signup", async (req, result) => {
   });
 });
 
-app.post("/makeRoom", (req, res) => {
+app.post("/makeRoom", logined, (req, res) => {
   const r = req.body;
   db.collection("Room").insertOne(
     {
@@ -175,6 +194,7 @@ app.post("/makeRoom", (req, res) => {
       location: r.location,
       personnel: r.personnel,
       price: r.price,
+      category: r.category,
     },
     function (err, res) {
       console.log("방정보 저장완료");
