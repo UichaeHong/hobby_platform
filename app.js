@@ -2,6 +2,10 @@ const express = require("express");
 const app = express();
 const PORT = 8080;
 app.use(express.urlencoded({ extended: true }));
+const http = require("http").createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(http);
+
 //DB
 const MongoClient = require("mongodb").MongoClient;
 const URL =
@@ -11,7 +15,7 @@ MongoClient.connect(URL, { useUnifiedTopology: true }, (error, client) => {
   if (error) return console.log("error");
   db = client.db("CODINGON");
   // listen
-  app.listen(PORT, () => {
+  http.listen(PORT, () => {
     console.log("listen");
   });
 });
@@ -23,9 +27,7 @@ const session = require("express-session");
 const { ReplSet } = require("mongodb/lib/core");
 const { currentLogger } = require("mongodb/lib/core/connection/logger");
 
-app.use(
-  session({ secret: "비밀코드", resave: true, saveUninitialized: false })
-);
+app.use(session({ secret: "비밀코드", resave: true, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -159,9 +161,7 @@ app.post("/signup", async (req, result) => {
       result.redirect("/");
     } else {
       console.log("중복자 발견");
-      result.send(
-        "<script>location.href='/signup'; alert('ID가 중복되었어요!');</script>"
-      );
+      result.send("<script>location.href='/signup'; alert('ID가 중복되었어요!');</script>");
     }
   });
 });
@@ -181,4 +181,18 @@ app.post("/makeRoom", (req, res) => {
     }
   );
   res.redirect("/");
+});
+
+// 채팅
+app.get("/chatRoom", (req, res) => {
+  res.render("chatRoom");
+});
+
+io.on("connection", function (socket) {
+  console.log("연결됨");
+
+  socket.on("user-send", function (data) {
+    console.log(data);
+    io.emit("broadcast", data); // 모든 사람들에게 전송
+  });
 });
