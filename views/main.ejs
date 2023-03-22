@@ -313,29 +313,29 @@
     </style>
   </head>
   <body>
-    <header>
-      <div class="header_inner">
-        <h1 class="logo">
-          <a href="#">Hobby</a>
-        </h1>
-        <nav>
+  <header>
+    <div class="header_inner">
+      <h1 class="logo">
+        <a href="#">Hobby</a>
+      </h1>
+      <nav>
 
-          <div class="input_search">
-            <input type="text" class="input_style" />
-            <button type="button" class="input_btnsearch">
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-          </div>
-          <a href="#" class="login"><i class="fa-solid fa-user-large"></i></a>
+        <div class="input_search">
+          <input type="text" class="input_style" />
+          <button type="button" class="input_btnsearch">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+        <a href="#" class="login"><i class="fa-solid fa-user-large"></i></a>
 
-          <!-- <input type="text" class="input_style" />
-          <a href="./login" class="login">로그인</a> -->
+        <!-- <input type="text" class="input_style" />
+        <a href="./login" class="login">로그인</a> -->
 
-        </nav>
-      </div>
-    </header>
-    <div class="content">
-      <div class="inner">
+      </nav>
+    </div>
+  </header>
+  <div class="content">
+    <div class="inner">
         <div class="swiper mySwiper">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
@@ -345,11 +345,8 @@
               <img src="../static/img/banner-starter_pc.png" alt="" />
             </div>
           </div>
-          <!-- <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div> -->
           <div class="swiper-pagination"></div>
         </div>
-
         <script>
           let swiper = new Swiper(".mySwiper", {
             pagination: {
@@ -436,13 +433,15 @@
                 <% } %>
               </ul>
             </div>
+          </div>
         </div>
         <div id="tab-2" class="tab-content"></div>
         <div id="tab-3" class="tab-content"></div>
         <div id="tab-4" class="tab-content"></div>
         <div id="tab-5" class="tab-content"></div>
-      </div>
     </div>
+  </div>
+    <script src="../static/js/main.js"></script>
     <footer>
       <div class="footer_inner">
         <p>내용</p>
@@ -458,6 +457,5 @@
         <p>내용</p>
       </div>
     </footer>
-    <script src="../static/js/main.js"></script>
   </body>
 </html>
