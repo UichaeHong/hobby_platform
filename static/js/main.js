@@ -121,23 +121,23 @@ async function tabHandler(item) {
 
   let room_data = await axios.get("/getData");
   room_data = room_data.data.data;
-  console.log("방비우기");
   let new_room_data = [];
   let category = "";
   switch (tabTarget.value) {
     case 0:
-      category = "축구";
+      category = "전체보기";
       break;
     case 1:
-      category = "야구";
+      category = "축구";
       break;
     case 2:
-      category = "농구";
+      category = "야구";
       break;
     case 3:
-      category = "배구";
+      category = "농구";
       break;
-    default:
+    case 4:
+      category = "배구";
       break;
   }
   console.log(category);
@@ -148,11 +148,8 @@ async function tabHandler(item) {
       new_room_data.push(room_data[i]);
     }
   }
-  console.log(new_room_data.length);
 
   for (let i = 0; i < new_room_data.length; i++) {
-    console.log("hi");
-    console.log($(".datalist"));
     $(".datalist").append(`
     <li>
     <a href="#">  
@@ -180,6 +177,36 @@ async function tabHandler(item) {
   </li>
 `);
   }
+  if (category == "전체보기") {
+    for (let i = 0; i < room_data.length; i++) {
+      $(".datalist").append(`
+    <li>
+    <a href="#">  
+      <div class="list_box">
+        <div class="img_box">
+          <img src="../static/img/ps_11_goalline.jpg" alt="" />
+        </div>
+        <div class="info">
+          <p class="small_badge">${room_data[i].category}</p>
+          <p class="title">
+             ${room_data[i].title}
+          </p>
+          <p class="date">
+            <i class="fa-regular fa-calendar"></i
+            ><strong>날짜</strong> : ${room_data[i].date}
+          </p>
+          <p class="person">
+            <i class="fa-solid fa-person"></i
+            ><strong>정원</strong> : ${room_data[i].personnel}
+          </p>
+        </div>
+        <div class="badge">신청가능</div>
+      </div>
+    </a>
+  </li>
+`);
+    }
+  }
 }
 
 // 검색기능
@@ -199,7 +226,6 @@ $(".input_style").change(async () => {
     }
   }
   for (let i = 0; i < new_room_data.length; i++) {
-    console.log("new_room");
     $(".datalist").append(`
     <li>
     <a href="#">  
