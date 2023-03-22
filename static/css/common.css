@@ -7,3 +7,83 @@
 
 /* 임시 css 파일 추후 삭제 예정
 @import url("font.css"); */
+
+/* header */
+header {
+  width: 100%;
+  height: 80px;
+  /* border-bottom: 1px solid #000; */
+}
+header .header_inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1280px;
+  height: 100%;
+  margin: 0 auto;
+}
+header .header_inner .logo {
+  font-weight: 700;
+  font-size: 32px;
+}
+header .header_inner .login i {
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+/* content layout */
+.content {
+  padding-bottom: 100px;
+}
+
+.inner {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+/* footer */
+footer {
+  background-color: #2a2a2a;
+}
+.footer_inner {
+  width: 1280px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+.footer_inner p {
+  color: #fff;
+}
+
+/* input */
+.input_search {
+  position: relative;
+  display: inline-block;
+}
+.input_search .input_btnsearch {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 15px;
+}
+.input_search input {
+  padding-right: 40px;
+  transition: 1s all;
+}
+.input_search input:focus {
+  width: 300px;
+}
+.input_style {
+  width: 200px;
+  height: 40px;
+  padding: 0 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+/* button style */
+button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
