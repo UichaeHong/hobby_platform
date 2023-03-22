@@ -1,5 +1,35 @@
-window.onload = function () {
+window.onload = async () => {
   buildcalendar();
+  let room_data = await axios.get("/getData");
+  room_data = room_data.data.data;
+  for (let i = 0; i < room_data.length; i++) {
+    $(".datalist").append(`
+    <li>
+    <a href="#">  
+      <div class="list_box">
+        <div class="img_box">
+          <img src="../static/img/ps_11_goalline.jpg" alt="" />
+        </div>
+        <div class="info">
+          <p class="small_badge">${room_data[i].category}</p>
+          <p class="title">
+             ${room_data[i].title}
+          </p>
+          <p class="date">
+            <i class="fa-regular fa-calendar"></i
+            ><strong>날짜</strong> : ${room_data[i].date}
+          </p>
+          <p class="person">
+            <i class="fa-solid fa-person"></i
+            ><strong>정원</strong> : ${room_data[i].personnel}
+          </p>
+        </div>
+        <div class="badge">신청가능</div>
+      </div>
+    </a>
+  </li>
+`);
+  }
 }; // 웹 페이지가 로드되면 buildcalendar 실행
 
 let nowMonth = new Date(); // 현재 달을 페이지를 로드한 날의 달로 초기화
