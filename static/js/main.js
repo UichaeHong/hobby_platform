@@ -6,7 +6,7 @@ window.onload = async () => {
   for (let i = 0; i < room_data.length; i++) {
     $(".datalist").append(`
     <li>
-    <a href="#">  
+    <a href="/DetailedPage">  
       <div class="list_box">
         <div class="img_box">
           <img src="../static/img/ps_11_goalline.jpg" alt="" />
@@ -44,9 +44,7 @@ function buildcalendar() {
 
   let tbody_calendar = document.querySelector(".calendar > tbody");
   document.getElementById("calYear").innerText = nowMonth.getFullYear(); // 연도 숫자 갱신
-  document.getElementById("calMonth").innerText = leftPad(
-    nowMonth.getMonth() + 1
-  ); // 월 숫자 갱신
+  document.getElementById("calMonth").innerText = leftPad(nowMonth.getMonth() + 1); // 월 숫자 갱신
 
   while (tbody_calendar.rows.length > 0) {
     // 이전 출력결과가 남아있는 경우 초기화
@@ -60,11 +58,7 @@ function buildcalendar() {
     let nowColumn = nowRow.insertCell(); // 열 추가
   }
 
-  for (
-    let nowDay = firstDate;
-    nowDay <= lastDate;
-    nowDay.setDate(nowDay.getDate() + 1)
-  ) {
+  for (let nowDay = firstDate; nowDay <= lastDate; nowDay.setDate(nowDay.getDate() + 1)) {
     // day는 날짜를 저장하는 변수, 이번달 마지막날까지 증가시키며 반복
 
     let nowColumn = nowRow.insertCell(); // 새 열을 추가하고
@@ -107,29 +101,19 @@ function buildcalendar() {
 function choiceDate(nowColumn) {
   if (document.getElementsByClassName("choiceDay")[0]) {
     // 기존에 선택한 날짜가 있으면
-    document
-      .getElementsByClassName("choiceDay")[0]
-      .classList.remove("choiceDay"); // 해당 날짜의 "choiceDay" class 제거
+    document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay"); // 해당 날짜의 "choiceDay" class 제거
   }
   nowColumn.classList.add("choiceDay"); // 선택된 날짜에 "choiceDay" class 추가
 }
 
 // 이전달 버튼 클릭
 function prevCalendar() {
-  nowMonth = new Date(
-    nowMonth.getFullYear(),
-    nowMonth.getMonth() - 1,
-    nowMonth.getDate()
-  ); // 현재 달을 1 감소
+  nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() - 1, nowMonth.getDate()); // 현재 달을 1 감소
   buildcalendar(); // 달력 다시 생성
 }
 // 다음달 버튼 클릭
 function nextCalendar() {
-  nowMonth = new Date(
-    nowMonth.getFullYear(),
-    nowMonth.getMonth() + 1,
-    nowMonth.getDate()
-  ); // 현재 달을 1 증가
+  nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, nowMonth.getDate()); // 현재 달을 1 증가
   buildcalendar(); // 달력 다시 생성
 }
 
@@ -198,7 +182,7 @@ async function tabHandler(item) {
   for (let i = 0; i < new_room_data.length; i++) {
     $(".datalist").append(`
     <li>
-    <a href="#">  
+    <a href="/DetailedPage">  
       <div class="list_box">
         <div class="img_box">
           <img src="../static/img/ps_11_goalline.jpg" alt="" />
@@ -227,7 +211,7 @@ async function tabHandler(item) {
     for (let i = 0; i < room_data.length; i++) {
       $(".datalist").append(`
     <li>
-    <a href="#">  
+    <a href="/DetailedPage">  
       <div class="list_box">
         <div class="img_box">
           <img src="../static/img/ps_11_goalline.jpg" alt="" />
@@ -274,7 +258,7 @@ $(".input_style").change(async () => {
   for (let i = 0; i < new_room_data.length; i++) {
     $(".datalist").append(`
     <li>
-    <a href="#">  
+    <a href="/DetailedPage">  
       <div class="list_box">
         <div class="img_box">
           <img src="../static/img/ps_11_goalline.jpg" alt="" />
