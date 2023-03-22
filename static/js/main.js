@@ -118,7 +118,6 @@ async function tabHandler(item) {
   tabTarget.classList.add("current");
 
   // 카드 만들기
-
   let room_data = await axios.get("/getData");
   room_data = room_data.data.data;
   let new_room_data = [];
