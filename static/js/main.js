@@ -2,6 +2,7 @@ window.onload = async () => {
   buildcalendar();
   let room_data = await axios.get("/getData");
   room_data = room_data.data.data;
+  // 메인페이지 생성
   for (let i = 0; i < room_data.length; i++) {
     $(".datalist").append(`
     <li>
