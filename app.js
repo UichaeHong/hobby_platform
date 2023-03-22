@@ -97,6 +97,9 @@ app.get("/main", (req, result) => {
       result.render("main.ejs", { data: res });
     });
 });
+app.get("/main2", (req, res) => {
+  res.render("main2");
+});
 
 // 달력 및 인풋 위한 데이터 받아오기
 app.get("/getData", (req, result) => {
