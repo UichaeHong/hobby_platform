@@ -9,7 +9,7 @@ window.onload = async () => {
     <a href="/DetailedPage">  
       <div class="list_box">
         <div class="img_box">
-          <img src="../static/img/ps_11_goalline.jpg" alt="" />
+          <img src=${room_data[i].src} alt="스포츠" />
         </div>
         <div class="info">
           <p class="small_badge">${room_data[i].category}</p>
@@ -185,7 +185,7 @@ async function tabHandler(item) {
     <a href="/DetailedPage">  
       <div class="list_box">
         <div class="img_box">
-          <img src="../static/img/ps_11_goalline.jpg" alt="" />
+          <img src=${new_room_data[i].src} alt="" />
         </div>
         <div class="info">
           <p class="small_badge">${new_room_data[i].category}</p>
@@ -214,7 +214,7 @@ async function tabHandler(item) {
     <a href="/DetailedPage">  
       <div class="list_box">
         <div class="img_box">
-          <img src="../static/img/ps_11_goalline.jpg" alt="" />
+          <img src=${room_data[i].src} alt="" />
         </div>
         <div class="info">
           <p class="small_badge">${room_data[i].category}</p>
@@ -249,7 +249,11 @@ $(".input_style").change(async () => {
 
   for (let i = 0; i < room_data.length; i++) {
     console.log(room_data[i].title.includes($(".input_style").val()));
-    if (room_data[i].title.includes($(".input_style").val())) {
+    // 제목, 장소 검색
+    if (
+      room_data[i].title.includes($(".input_style").val()) ||
+      room_data[i].location.includes($(".input_style").val())
+    ) {
       // console.log(room_data[i], input.value);
       // console.log(new_room_data);
       new_room_data.push(room_data[i]);
@@ -261,10 +265,10 @@ $(".input_style").change(async () => {
     <a href="/DetailedPage">  
       <div class="list_box">
         <div class="img_box">
-          <img src="../static/img/ps_11_goalline.jpg" alt="" />
+          <img src=${new_room_data[i].src} alt="" />
         </div>
         <div class="info">
-          <p class="small_badge">축구</p>
+          <p class="small_badge">${new_room_data[i].category}</p>
           <p class="title">
              ${new_room_data[i].title}
           </p>

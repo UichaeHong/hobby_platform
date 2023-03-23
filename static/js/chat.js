@@ -9,6 +9,7 @@ $("#send").click(function () {
   </div>`;
   $(".chat_form").append(template);
   socket.emit("user-send", msg);
+  $("#input_text").val("");
 });
 
 socket.on("broadcast", function (data) {
