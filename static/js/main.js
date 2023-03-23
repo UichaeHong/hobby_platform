@@ -1,36 +1,85 @@
+const dateSort = (room_data) => {
+  room_data.sort(function (a, b) {
+    if (a.date < b.date) {
+      return -1;
+    } else {
+      return 1;
+    }
+    return 0;
+  });
+  return room_data;
+};
+
+function makeRoom(room_data) {
+  dateSort(room_data);
+  for (let i = 0; i < room_data.length; i++) {
+    $(".datalist").append(`
+<li>
+<a href="/DetailedPage">  
+  <div class="list_box">
+    <div class="img_box">
+      <img src=${room_data[i].src} alt="" />
+    </div>
+    <div class="info">
+      <p class="small_badge">${room_data[i].category}</p>
+      <p class="title">
+         ${room_data[i].title}
+      </p>
+      <p class="date">
+        <i class="fa-regular fa-calendar"></i
+        ><strong>날짜</strong> : ${room_data[i].date}
+      </p>
+      <p class="person">
+        <i class="fa-solid fa-person"></i
+        ><strong>정원</strong> : ${room_data[i].personnel}
+      </p>
+    </div>
+    <div class="badge">신청가능</div>
+  </div>
+</a>
+</li>
+`);
+  }
+}
+
+function makeNewRoom(new_room_data) {
+  dateSort(new_room_data);
+  for (let i = 0; i < new_room_data.length; i++) {
+    $(".datalist").append(`
+  <li>
+  <a href="/DetailedPage">  
+    <div class="list_box">
+      <div class="img_box">
+        <img src=${new_room_data[i].src} alt="" />
+      </div>
+      <div class="info">
+        <p class="small_badge">${new_room_data[i].category}</p>
+        <p class="title">
+           ${new_room_data[i].title}
+        </p>
+        <p class="date">
+          <i class="fa-regular fa-calendar"></i
+          ><strong>날짜</strong> : ${new_room_data[i].date}
+        </p>
+        <p class="person">
+          <i class="fa-solid fa-person"></i
+          ><strong>정원</strong> : ${new_room_data[i].personnel}
+        </p>
+      </div>
+      <div class="badge">신청가능</div>
+    </div>
+  </a>
+</li>
+`);
+  }
+}
+
 window.onload = async () => {
   buildcalendar();
   let room_data = await axios.get("/getData");
   room_data = room_data.data.data;
   // 메인페이지 생성
-  for (let i = 0; i < room_data.length; i++) {
-    $(".datalist").append(`
-    <li>
-    <a href="/DetailedPage">  
-      <div class="list_box">
-        <div class="img_box">
-          <img src=${room_data[i].src} alt="스포츠" />
-        </div>
-        <div class="info">
-          <p class="small_badge">${room_data[i].category}</p>
-          <p class="title">
-             ${room_data[i].title}
-          </p>
-          <p class="date">
-            <i class="fa-regular fa-calendar"></i
-            ><strong>날짜</strong> : ${room_data[i].date}
-          </p>
-          <p class="person">
-            <i class="fa-solid fa-person"></i
-            ><strong>정원</strong> : ${room_data[i].personnel}
-          </p>
-        </div>
-        <div class="badge">신청가능</div>
-      </div>
-    </a>
-  </li>
-`);
-  }
+  makeRoom(room_data);
 }; // 웹 페이지가 로드되면 buildcalendar 실행
 
 let nowMonth = new Date(); // 현재 달을 페이지를 로드한 날의 달로 초기화
@@ -98,12 +147,30 @@ function buildcalendar() {
 }
 
 // 날짜 선택
-function choiceDate(nowColumn) {
+async function choiceDate(nowColumn) {
   if (document.getElementsByClassName("choiceDay")[0]) {
     // 기존에 선택한 날짜가 있으면
     document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay"); // 해당 날짜의 "choiceDay" class 제거
   }
   nowColumn.classList.add("choiceDay"); // 선택된 날짜에 "choiceDay" class 추가
+
+  let year = calYear.innerText;
+  let month = calMonth.innerText;
+  let day = nowColumn.innerText;
+  let targetDay = year + "-" + month + "-" + day;
+  console.log(targetDay);
+
+  let room_data = await axios.get("/getData");
+  room_data = room_data.data.data;
+  $(".datalist").empty();
+  console.log("방비우기");
+  let new_room_data = [];
+  for (let i = 0; i < room_data.length; i++) {
+    if (targetDay == room_data[i].date) {
+      new_room_data.push(room_data[i]);
+    }
+  }
+  makeNewRoom(new_room_data);
 }
 
 // 이전달 버튼 클릭
@@ -138,7 +205,7 @@ async function tabHandler(item) {
   $(".datalist").empty();
   const tabTarget = item.currentTarget;
   const target = tabTarget.dataset.tab;
-  console.log(tabTarget.value);
+
   tabItem.forEach((title) => {
     title.classList.remove("current");
   });
@@ -173,74 +240,18 @@ async function tabHandler(item) {
   console.log(category);
   for (let i = 0; i < room_data.length; i++) {
     if (category == room_data[i].category) {
-      // console.log(room_data[i], input.value);
-      // console.log(new_room_data);
       new_room_data.push(room_data[i]);
     }
   }
-
-  for (let i = 0; i < new_room_data.length; i++) {
-    $(".datalist").append(`
-    <li>
-    <a href="/DetailedPage">  
-      <div class="list_box">
-        <div class="img_box">
-          <img src=${new_room_data[i].src} alt="" />
-        </div>
-        <div class="info">
-          <p class="small_badge">${new_room_data[i].category}</p>
-          <p class="title">
-             ${new_room_data[i].title}
-          </p>
-          <p class="date">
-            <i class="fa-regular fa-calendar"></i
-            ><strong>날짜</strong> : ${new_room_data[i].date}
-          </p>
-          <p class="person">
-            <i class="fa-solid fa-person"></i
-            ><strong>정원</strong> : ${new_room_data[i].personnel}
-          </p>
-        </div>
-        <div class="badge">신청가능</div>
-      </div>
-    </a>
-  </li>
-`);
-  }
+  makeNewRoom(new_room_data);
   if (category == "전체보기") {
-    for (let i = 0; i < room_data.length; i++) {
-      $(".datalist").append(`
-    <li>
-    <a href="/DetailedPage">  
-      <div class="list_box">
-        <div class="img_box">
-          <img src=${room_data[i].src} alt="" />
-        </div>
-        <div class="info">
-          <p class="small_badge">${room_data[i].category}</p>
-          <p class="title">
-             ${room_data[i].title}
-          </p>
-          <p class="date">
-            <i class="fa-regular fa-calendar"></i
-            ><strong>날짜</strong> : ${room_data[i].date}
-          </p>
-          <p class="person">
-            <i class="fa-solid fa-person"></i
-            ><strong>정원</strong> : ${room_data[i].personnel}
-          </p>
-        </div>
-        <div class="badge">신청가능</div>
-      </div>
-    </a>
-  </li>
-`);
-    }
+    makeRoom(room_data);
   }
 }
 
 // 검색기능
 $(".input_style").change(async () => {
+  console.log($(".input_style").val());
   let room_data = await axios.get("/getData");
   room_data = room_data.data.data;
   $(".datalist").empty();
@@ -254,43 +265,18 @@ $(".input_style").change(async () => {
       room_data[i].title.includes($(".input_style").val()) ||
       room_data[i].location.includes($(".input_style").val())
     ) {
-      // console.log(room_data[i], input.value);
-      // console.log(new_room_data);
       new_room_data.push(room_data[i]);
     }
   }
-  for (let i = 0; i < new_room_data.length; i++) {
-    $(".datalist").append(`
-    <li>
-    <a href="/DetailedPage">  
-      <div class="list_box">
-        <div class="img_box">
-          <img src=${new_room_data[i].src} alt="" />
-        </div>
-        <div class="info">
-          <p class="small_badge">${new_room_data[i].category}</p>
-          <p class="title">
-             ${new_room_data[i].title}
-          </p>
-          <p class="date">
-            <i class="fa-regular fa-calendar"></i
-            ><strong>날짜</strong> : ${new_room_data[i].date}
-          </p>
-          <p class="person">
-            <i class="fa-solid fa-person"></i
-            ><strong>정원</strong> : ${new_room_data[i].personnel}
-          </p>
-        </div>
-        <div class="badge">신청가능</div>
-      </div>
-    </a>
-  </li>
-`);
-  }
+  console.log(1);
+  makeNewRoom(new_room_data);
+  tabItem.forEach((title) => {
+    title.classList.remove("current");
+  });
+  tabContent.forEach((target) => {
+    target.classList.remove("current");
+  });
+  document.querySelector("#all").classList.add("current");
 
-  if ($(".input_style").val() == "") {
-    axios.get("/main", (res) => {
-      console.log(res);
-    });
-  }
+  $(".input_style").val() == "";
 });
