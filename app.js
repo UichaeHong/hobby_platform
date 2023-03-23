@@ -1,21 +1,20 @@
 const express = require("express");
 const app = express();
-const PORT = 8080;
 app.use(express.urlencoded({ extended: true }));
 const http = require("http").createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(http);
+require("dotenv").config();
 
 //DB
 const MongoClient = require("mongodb").MongoClient;
-const URL =
-  "mongodb+srv://admin:qwer1234@cluster0.paftxqv.mongodb.net/CODINGON?retryWrites=true&w=majority";
+
 var db;
-MongoClient.connect(URL, { useUnifiedTopology: true }, (error, client) => {
+MongoClient.connect(process.env.DB_URL, { useUnifiedTopology: true }, (error, client) => {
   if (error) return console.log("error");
   db = client.db("CODINGON");
   // listen
-  http.listen(PORT, () => {
+  http.listen(process.env.PORT, () => {
     console.log("listen");
   });
 });
