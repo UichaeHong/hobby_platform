@@ -2,7 +2,6 @@ window.onload = async () => {
   buildcalendar();
   let room_data = await axios.get("/getData");
   room_data = room_data.data.data;
-  // 메인페이지 생성
   for (let i = 0; i < room_data.length; i++) {
     $(".datalist").append(`
     <li>
@@ -43,9 +42,11 @@ function buildcalendar() {
   let lastDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, 0); // 이번달 마지막날
 
   let tbody_calendar = document.querySelector(".calendar > tbody");
-  document.getElementById("calYear").innerText = nowMonth.getFullYear(); // 연도 숫자 갱신
+  let year = (document.getElementById("calYear").innerText =
+    nowMonth.getFullYear()); // 연도 숫자 갱신
+  let month = "";
   document.getElementById("calMonth").innerText = leftPad(
-    nowMonth.getMonth() + 1
+    (month = nowMonth.getMonth() + 1)
   ); // 월 숫자 갱신
 
   while (tbody_calendar.rows.length > 0) {
@@ -91,26 +92,29 @@ function buildcalendar() {
       // 오늘인 경우
       nowColumn.className = "today";
       nowColumn.onclick = function () {
-        choiceDate(this);
+        choiceDate(this, year, month);
       };
     } else {
       // 미래인 경우
       nowColumn.className = "futureDay";
       nowColumn.onclick = function () {
-        choiceDate(this);
+        choiceDate(this, year, month);
+        s;
       };
     }
   }
 }
 
 // 날짜 선택
-function choiceDate(nowColumn) {
+function choiceDate(nowColumn, year, month) {
   if (document.getElementsByClassName("choiceDay")[0]) {
     // 기존에 선택한 날짜가 있으면
     document
       .getElementsByClassName("choiceDay")[0]
       .classList.remove("choiceDay"); // 해당 날짜의 "choiceDay" class 제거
+    //getBoard();
   }
+
   nowColumn.classList.add("choiceDay"); // 선택된 날짜에 "choiceDay" class 추가
 }
 
