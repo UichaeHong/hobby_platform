@@ -11,20 +11,25 @@
       href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
     <script
       src="https://kit.fontawesome.com/65a524014b.js"
       crossorigin="anonymous"
     ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.min.js"
+      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+      crossorigin="anonymous"
+    ></script>
+    <script src="../static/js/main.js" defer></script>
 
     <style>
       header {
         width: 100%;
         height: 80px;
         /* border-bottom: 1px solid #000; */
-        position: absolute;
-        z-index: 1;
-        top: 0;
-        background-color: #fff;
       }
       header .header_inner {
         display: flex;
@@ -35,9 +40,38 @@
         margin: 0 auto;
       }
       header .header_inner .logo {
-        font-weight: 800;
+        font-weight: 700;
         font-size: 32px;
-        letter-spacing: -3px;
+      }
+      header .header_inner .logo a {
+        letter-spacing: -2px;
+      }
+      header .header_inner .login i {
+        font-size: 20px;
+        margin-left: 10px;
+      }
+      .input_search {
+        position: relative;
+        display: inline-block;
+      }
+      .input_search .input_btnsearch {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 15px;
+      }
+      .input_search input {
+        padding-right: 40px;
+        transition: 1s all;
+      }
+      .input_search input:focus {
+        width: 300px;
+      }
+      button {
+        background: none;
+        border: 0;
+        cursor: pointer;
       }
       .input_style {
         width: 200px;
@@ -55,152 +89,450 @@
         width: 1280px;
         margin: 0 auto;
       }
-      section {
-        position: relative;
-        width: 100%;
-        height: 100vh;
-        background: #fff;
+      footer {
+        background-color: #2a2a2a;
       }
-      .s1 {
-        display: flex;
-        align-items: center;
+      .footer_inner {
+        width: 1280px;
+        margin: 0 auto;
+        padding: 60px 0;
       }
-      .s2 {
-        background-color: aqua;
+      .footer_inner p {
+        line-height: 1.5;
+        color: #fff;
       }
-      i {
-        position: absolute;
-        font-size: 100px;
-        /* transition: 2s all; */
-        color: #e6e3e3;
+      .footer_inner .title {
+        font-weight: 700;
+        font-size: 18px;
+        text-decoration: underline;
       }
-      i.fa-baseball {
-        right: 0;
-        animation: ball 3000ms infinite linear;
+      .footer_inner .copyright {
+        font-weight: 300;
+        font-weight: 200;
+        font-size: 14px;
+      }
+      .mySwiper {
+        margin-top: 20px;
+        border-radius: 20px;
+        overflow: hidden;
       }
 
-      /* @keyframes ball {
-        from {
-          transform: translateX(100vw);
+      .swiper {
+        width: 100%;
+        height: 100%;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+      .swiper-pagination {
+        width: 100px;
+        height: 40px;
+        background: rgba(0, 0, 0, 0.4);
+        color: #fff;
+        display: flex;
+        left: 50%;
+        border-radius: 20px;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        letter-spacing: 2px;
+        transform: translateX(-50%);
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .category_list {
+        display: flex;
+        margin-top: 60px;
+        gap: 20px;
+        justify-content: center;
+      }
+      .category_list li {
+        position: relative;
+        /* height: 40px; */
+      }
+      .category_list li.current {
+        font-size: 18px;
+        font-weight: 700;
+        align-items: flex-end;
+        /* text-decoration: underline; */
+      }
+      .category_list li.current::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        display: inline-block;
+        width: 100%;
+        height: 2px;
+        background-color: #333;
+      }
+      .datalist_wrap {
+        display: flex;
+        width: 100%;
+        gap: 60px;
+        margin-top: 60px;
+      }
+      .datalist_lbox {
+        width: 300px;
+        min-width: 350px;
+      }
+      .datalist_rbox {
+        width: 100%;
+      }
+      .datalist {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px 30px;
+      }
+      .datalist li {
+        width: calc(33.3333% - 22px);
+        /* border: 1px solid #ccc; */
+      }
+      .datalist li:nth-child(3n) {
+        width: calc(33.4% - 22px);
+      }
+      .datalist li:hover .list_box .img_box img {
+        scale: 1.2;
+      }
+      .list_box {
+        position: relative;
+      }
+      .list_box .img_box {
+        height: 267px;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .list_box .img_box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.2s all;
+      }
+      .list_box .info {
+        padding: 20px 0;
+      }
+      .list_box .info p {
+        margin-top: 10px;
+      }
+      .list_box .info p:first-child {
+        margin-top: 0;
+      }
+      .list_box .info p i {
+        width: 16px;
+        text-align: center;
+        margin-right: 5px;
+        color: #7a7a7a;
+      }
+      .info .title {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 1.3;
+        word-break: keep-all;
+        /* min-height: 52px; */
+      }
+      .info strong {
+        font-weight: 500;
+      }
+      .small_badge {
+        display: inline-block;
+        min-width: 28px;
+        height: 20px;
+        background: #333;
+        color: #fff;
+        padding: 0 10px;
+        line-height: 20px;
+        font-weight: 500;
+        border-radius: 10px;
+        box-sizing: border-box;
+      }
+      .badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: inline-block;
+        height: 30px;
+        padding: 0 10px;
+        line-height: 30px;
+        font-weight: 500;
+        color: #fff;
+        background-color: #3e85ef;
+      }
+      .badge.type01 {
+        background-color: #ff4949;
+      }
+      .badge.type02 {
+        background-color: #ccc;
+      }
+      /* 달력 */
+      .calendar_box td {
+        position: relative;
+        width: 45px;
+        height: 45px;
+        vertical-align: middle;
+      }
+      .calendar_box {
+        position: sticky;
+        top: 30px;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 20px;
+      }
+      .calendar {
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      .calendar > thead > tr:first-child > td {
+        font-weight: bold;
+        font-style: 20px;
+      }
+
+      .calendar > thead > tr:last-child > td {
+        background-color: #fff;
+        color: #333;
+        font-weight: 500;
+      }
+
+      .pastDay {
+        background-color: white;
+        opacity: 0.3;
+      }
+
+      .today {
+      }
+      .today::before,
+      .choiceDay::before {
+        content: "";
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background-color: #ffca64;
+        cursor: pointer;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+      }
+
+      .futureDay {
+        cursor: pointer;
+        /* background-color: #ffffff; */
+      }
+      .futureDay.choiceDay,
+      .today.choiceDay {
+        color: #fff !important;
+        cursor: pointer;
+      }
+      .choiceDay::before {
+        background-color: #3e85ef;
+      }
+
+      /* 탭메뉴 */
+      .tab-content {
+        /* display: none; */
+      }
+      .tab-content.current {
+        display: block;
+      }
+
+      #talk {
+        color: red;
+        cursor: pointer;
+      }
+
+      @media screen and (max-width: 1310px) {
+        header .header_inner {
+          width: 100%;
+          padding: 0 20px;
         }
-        from {
-          transform: translateX(80vw);
+        footer .footer_inner {
+          width: 100%;
+          padding: 60px 20px;
         }
-      } */
+        .inner {
+          width: 100%;
+          padding: 0 20px;
+        }
+      }
+      @media screen and (max-width: 1200px) {
+        .datalist li,
+        .datalist li:nth-child(3n) {
+          width: calc(50% - 15px);
+        }
+        .list_box .img_box {
+          height: 230px;
+        }
+      }
+      @media screen and (max-width: 1020px) {
+        .content {
+          padding-bottom: 50px;
+        }
+        .datalist {
+          gap: 20px 30px;
+        }
+        .datalist_wrap {
+          margin-top: 40px;
+          flex-direction: column;
+          gap: 40px;
+        }
+        .datalist_lbox {
+          width: 100%;
+          min-width: auto;
+        }
+        .calendar {
+          width: 100%;
+        }
+        .category_list {
+          margin-top: 40px;
+        }
+        .swiper-pagination {
+          width: 70px;
+          height: 30px;
+          font-size: 14px;
+        }
+        .input_search input:focus {
+          width: 200px;
+        }
+      }
+      @media screen and (max-width: 560px) {
+        .datalist li,
+        .datalist li:nth-child(3n) {
+          width: 100%;
+        }
+        .list_box .info .title {
+          font-size: 18px;
+          font-weight: 700;
+        }
+        .list_box .info p {
+          font-size: 14px;
+        }
+      }
     </style>
   </head>
   <body>
     <header>
       <div class="header_inner">
         <h1 class="logo">
-          <a href="#">Hobby</a>
+          <a href="/main">H<i class="fa-brands fa-spotify"></i>BBY</a>
         </h1>
         <nav>
-          <input type="text" class="input_style" />
-          <a href="#" class="login">로그인</a>
+          <div class="input_search">
+            <input type="text" class="input_style" />
+            <button type="button" class="input_btnsearch">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+          <a href="/login" class="login"
+            ><i class="fa-solid fa-user-large"></i
+          ></a>
         </nav>
       </div>
     </header>
-    <section class="s1">
+    <div class="content">
       <div class="inner">
-        <p class="text">존중하고 격려하고 함께 즐겨요<span></span></p>
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="../static/img/banner-manner_pc.png" alt="" />
+            </div>
+            <div class="swiper-slide">
+              <img src="../static/img/banner-starter_pc.png" alt="" />
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+        <script>
+          let swiper = new Swiper(".mySwiper", {
+            pagination: {
+              el: ".swiper-pagination",
+              type: "fraction",
+            },
+            // navigation: {
+            //   nextEl: ".swiper-button-next",
+            //   prevEl: ".swiper-button-prev",
+            // },
+            autoplay: true,
+          });
+        </script>
+
+        <ul class="category_list">
+          <li value="0" class="current" data-tab="tab-1">
+            <a href="#">전체보기</a>
+          </li>
+          <li value="1" data-tab="tab-2"><a href="#">축구</a></li>
+          <li value="2" data-tab="tab-3"><a href="#">야구</a></li>
+          <li value="3" data-tab="tab-4"><a href="#">농구</a></li>
+          <li value="4" data-tab="tab-5"><a href="#">배구</a></li>
+        </ul>
+
+        <div id="tab-1" class="tab-content current">
+          <div class="datalist_wrap">
+            <div class="datalist_lbox">
+              <div class="calendar_box">
+                <table class="calendar">
+                  <thead>
+                    <tr>
+                      <td onClick="prevCalendar();" style="cursor: pointer">
+                        &#60;
+                      </td>
+                      <td colspan="5">
+                        <span id="calYear"></span>년
+                        <span id="calMonth"></span>월
+                      </td>
+                      <td onClick="nextCalendar();" style="cursor: pointer">
+                        &#62;
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>일</td>
+                      <td>월</td>
+                      <td>화</td>
+                      <td>수</td>
+                      <td>목</td>
+                      <td>금</td>
+                      <td>토</td>
+                    </tr>
+                  </thead>
+
+                  <tbody></tbody>
+                </table>
+              </div>
+              <!-- <i id='talk' class="fa-regular fa-comment fa-2xl"></i> -->
+            </div>
+            <div class="datalist_rbox">
+              <ul class="datalist"></ul>
+            </div>
+          </div>
+        </div>
+        <div id="tab-2" class="tab-content"></div>
+        <div id="tab-3" class="tab-content"></div>
+        <div id="tab-4" class="tab-content"></div>
+        <div id="tab-5" class="tab-content"></div>
       </div>
-      <i class="fa-solid fa-basketball"></i>
-      <i class="fa-solid fa-baseball"></i>
-      <div class="box">
-        <div class="wave -one"></div>
-        <div class="wave -two"></div>
-        <div class="wave -three"></div>
+    </div>
+    <script src="../static/js/main.js"></script>
+    <footer>
+      <div class="footer_inner">
+        <p class="title">포스코X코딩온 KDT6기</p>
+        <p class="address">주소 : 서울특별시 마포구 숭문 4길 6</p>
+        <p class="copyright">ⓒ 2023 CODINGON, Inc. All Rights Reserved</p>
       </div>
-    </section>
-    <script>
-      let text = document.querySelector(".text span");
-      let text1 = "취미공유플랫폼 Hobby.";
-      let text2 = text1.split("");
-      let i = 0;
-      function typing() {
-        if (i < text2.length) {
-          let txt = text2[i];
-          text.innerHTML += txt;
-        }
-        i++;
-      }
-      setInterval(typing, 100);
-    </script>
-    <style>
-      .text {
-        font-size: 70px;
-        font-weight: 700;
-        text-align: center;
-        transform: rotate(-15deg);
-      }
-      .text span {
-        display: block;
-        font-size: 100px;
-        font-weight: 900;
-        color: #3498db;
-      }
-      /* .box {
-        
-        border-radius: 5px;
-        box-shadow: 0 2px 30px rgba(black, 0.2);
-        background: lighten(#f0f4c3, 10%);
-        position: relative;
-        overflow: hidden;
-        transform: translate3d(0, 0, 0);
-        position: absolute;
-      }
-
-      .wave {
-        opacity: 0.4;
-        position: absolute;
-        bottom: -30%;
-        left: 50%;
-        background: #0af;
-        width: 500px;
-        height: 500px;
-        margin-left: -250px;
-        margin-top: -250px;
-        transform-origin: 50% 48%;
-        border-radius: 43%;
-        animation: drift 3000ms infinite linear;
-      }
-
-      .wave.-three {
-        animation: drift 5000ms infinite linear;
-      }
-
-      .wave.-two {
-        animation: drift 7000ms infinite linear;
-        opacity: 0.1;
-        background: yellow;
-      } */
-
-      /* .box:after {
-        content: "";
-        display: block;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          to bottom,
-          rgba(#e8a, 1),
-          rgba(#def, 0) 80%,
-          rgba(white, 0.5)
-        );
-        z-index: 11;
-        transform: translate3d(0, 0, 0);
-      } */
-      /* @keyframes drift {
-        from {
-          transform: rotate(0deg);
-        }
-        from {
-          transform: rotate(360deg);
-        }
-      } */
-    </style>
-    <section class="s2"><div class="inner">ddd2</div></section>
+    </footer>
   </body>
 </html>
