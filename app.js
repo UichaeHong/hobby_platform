@@ -48,7 +48,7 @@ app.post(
     res.render("main_logout");
   }
 );
-app.get("/main_logout", (req, res) => {
+app.get("/main_logout", logined, (req, res) => {
   res.render("main_logout");
 });
 
@@ -187,8 +187,26 @@ app.post("/signup", async (req, result) => {
 
 app.post("/makeRoom", logined, (req, res) => {
   const r = req.body;
+  let img_src;
+  switch (r.category) {
+    case "축구":
+      img_src = "../static/img/soccer.jpg";
+      break;
+    case "야구":
+      img_src = "../static/img/baseball.jpeg";
+      break;
+    case "농구":
+      img_src = "../static/img/basketball.jpeg";
+      break;
+    case "배구":
+      img_src = "../static/img/volleyball.jpeg";
+    default:
+      break;
+  }
+  console.log(img_src);
   db.collection("Room").insertOne(
     {
+      src: img_src,
       title: r.title,
       date: r.date,
       location: r.location,
@@ -200,7 +218,7 @@ app.post("/makeRoom", logined, (req, res) => {
       console.log("방정보 저장완료");
     }
   );
-  res.redirect("/");
+  res.redirect("/main_logout");
 });
 
 // 채팅
