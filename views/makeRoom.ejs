@@ -40,7 +40,7 @@
     <header>
       <div class="header_inner">
         <h1 class="logo">
-          <a href="/main">Hobby</a>
+          <a href="/main_logout">Hobby</a>
         </h1>
         <nav>
           <div class="input_search">
@@ -49,7 +49,6 @@
               <i class="fa-solid fa-magnifying-glass"></i>
             </button>
           </div>
-          <a href="/login" class="login"><i class="fa-solid fa-user-large"></i></a>
         </nav>
       </div>
     </header>
@@ -58,7 +57,7 @@
       <div class="main_container">
         <div class="imgs slide_signup_img"></div>
         <div class="signup_form">
-          <form action="#" method="POST">
+          <form action="/makeRoom" method="POST">
             <!-- 타이틀 -->
             <div class="form_title">
               <h2>혼자하기 싫을땐?</h2>
@@ -74,6 +73,16 @@
               <div class="form_input">
                 <span>날짜</span>
                 <input type="date" name="date" />
+              </div>
+
+              <div class="form_input">
+                <span>카테고리</span>
+                <select class="form_input" value="남자" name="category">
+                  <option>축구</option>
+                  <option>야구</option>
+                  <option>농구</option>
+                  <option>배구</option>
+                </select>
               </div>
 
               <div class="form_input">

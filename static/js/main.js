@@ -99,7 +99,6 @@ function buildcalendar() {
       nowColumn.className = "futureDay";
       nowColumn.onclick = function () {
         choiceDate(this, year, month);
-        s;
       };
     }
   }
@@ -116,6 +115,11 @@ function choiceDate(nowColumn, year, month) {
   }
 
   nowColumn.classList.add("choiceDay"); // 선택된 날짜에 "choiceDay" class 추가
+
+  if (month.toString().length == 1) {
+    month = "0" + month.toString();
+  }
+  alert(year + "" + month + $(".choiceDay").text());
 }
 
 // 이전달 버튼 클릭
