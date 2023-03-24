@@ -8,6 +8,8 @@ require("dotenv").config();
 
 //DB
 const MongoClient = require("mongodb").MongoClient;
+const mongodb = require("mongodb");
+const mongoose = require("mongoose");
 
 var db;
 MongoClient.connect(
@@ -100,9 +102,7 @@ passport.serializeUser(function (user, done) {
 
 // 마이페이지 접속시
 passport.deserializeUser(function (email, done) {
-  console.log(11);
   db.collection("User_Info").findOne({ id: email }, function (err, res) {
-    console.log(res);
     done(null, res);
   });
 });
@@ -115,8 +115,14 @@ function logined(req, res, next) {
     res.send("<script>location.href='/main'; alert('로그인하세요')</script>");
   }
 }
-app.get("/DetailedPage", logined, (req, res) => {
-  res.render("DetailedPage");
+app.get("/DetailedPage/:id", logined, (req, result) => {
+  let getId = req.params.id;
+  console.log("getId:", getId);
+  console.log("getId:", typeof getId);
+  db.collection("Room").findOne({ _id: mongodb.ObjectId(getId) }, function (err, res) {
+    console.log("방정보", res);
+    result.render("DetailedPage", { data: res });
+  });
 });
 // static & views 설정
 app.set("view engine", "ejs");
@@ -137,14 +143,10 @@ app.get("/main", (req, result) => {
   db.collection("Room")
     .find()
     .toArray(function (err, res) {
-      console.log(res);
       result.render("main.ejs", { data: res });
     });
 });
-// 상세페이지
-app.get("/DetailedPage", (req, res) => {
-  res.render("DetailedPage");
-});
+
 app.get("/main2", (req, res) => {
   res.render("main2");
 });
@@ -171,7 +173,6 @@ app.get("/makeRoom", (req, res) => {
 
 app.post("/signup", async (req, result) => {
   const r = req.body;
-  console.log(req.body);
   // id중복 체크
   await db.collection("User_Info").findOne({ id: r.id }, function (err, res) {
     // 중복자 없으면
