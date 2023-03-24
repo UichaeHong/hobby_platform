@@ -63,7 +63,7 @@ function makeNewRoom(new_room_data) {
         </p>
         <p class="person">
           <i class="fa-solid fa-person"></i
-          ><strong>정원</strong> : ${new_room_data[i].personnel}
+          ><strong>정원</strong> : ${new_room_data[i].personnel}명
         </p>
       </div>
       <div class="badge">신청가능</div>
