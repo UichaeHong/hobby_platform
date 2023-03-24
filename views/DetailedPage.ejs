@@ -23,12 +23,23 @@
       integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
       crossorigin="anonymous"
     ></script>
-
+    <script
+      src="https://kit.fontawesome.com/65a524014b.js"
+      crossorigin="anonymous"
+    ></script>
     <style>
+      body {
+        background-color: #ddd;
+        display: flex;
+
+        justify-content: center;
+      }
       header {
         width: 100%;
         height: 80px;
         /* border-bottom: 1px solid #000; */
+        background-color: white;
+        position: absolute;
       }
       header .header_inner {
         display: flex;
@@ -77,23 +88,251 @@
         border-radius: 20px;
       }
       .content {
+        position: absolute;
+        top: 80px;
         padding-bottom: 100px;
+        width: 1280px;
+        height: 100%;
       }
 
       .inner {
-        width: 1280px;
+        /* position: absolute;
+        display: flex; */
+        width: 100%;
+        height: 448px;
         margin: 0 auto;
+        background-size: 100%;
+        /* width: 100%; */
+        /* height: 100%; */
       }
-      footer {
+      /* .swiper {
+      } */
+      /* ------------------------------------------유튜브 보고 따라한 슬라이더-------------------------------------- */
+      /* .swiper-wrapper { */
+        /* width: 300vw; */
+        /* height: 438px; */
+        /* transform: translate(-100vm); */
+        /* overflow: hidden; */
+        /* object-fit: fill; */
+      /* } */
+      .swiper-slide {
+        /* width: 100vw; */
+        float: left;
+        overflow: hidden;
+      }
+      .swiper {
+        height: 438px;
+      }
+
+      /* --------------------------------section--------------------------- */
+      .main-section {
+        position: absolute;
+
+        background-color: #ddd;
+        width: 1280px;
+        /* height: 20%; */
+        /* margin: 0px 40px; */
+      }
+      /* 첫번째 박스 */
+      .main-text {
+        /* background-color: white;
+        width: 810px;
+        padding: 30px 40px; */
+        /* height: 20%;
+        margin-top: 20px;
+
+        border-radius: 20px; */
+        background-color: white;
+        width: 790px;
+
+        height: 50%;
+        padding: 40px 50px;
+        margin-top: 20px;
+        /* height: 500px; */
+        border-radius: 20px;
+
+      }
+      .main-text > h3 {
+        font-weight: bold;
+        font-size: x-large;
+        margin-top: 10px;
+      }
+      ul {
+        padding: 10px;
+      }
+      
+      .info_list {
+        padding: 10px 0px;
+      }
+
+      /* 메인의 두번째 박스 */
+      .main-two {
+        /* background-color: white;
+        width: 850px;
+
+        height: 20%;
+        padding: 30px 20px;
+        margin-top: 20px;
+        height: 500px;
+        border-radius: 20px; */
+        background-color: white;
+        width: 790px;
+
+        height: 50%;
+        padding: 40px 50px;
+        margin-top: 20px;
+        /* height: 500px; */
+        border-radius: 20px;
+
+      }
+      .main-two > h3 {
+        font-size: x-large;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+
+      .main-two > ul {
+        padding: 10px;
+        margin-bottom: 10px;
+        font-size: large;
+      }
+      .main-two > ul > li {
+        padding: 5px;
+      }
+
+      .two-text {
+        padding: 15px 0px;
+      }
+
+      /* 메인의 세번째 박스 */
+      .main-three {
+        background-color: white;
+        width: 790px;
+
+        height: 50%;
+        padding: 40px 50px;
+        margin-top: 20px;
+        /* height: 500px; */
+        border-radius: 20px;
+      }
+      .main-three > h3 {
+        font-weight: bold;
+        font-size: x-large;
+      }
+      .main-three > ul {
+        padding: 10px;
+        margin-bottom: 10px;
+        font-size: large;
+      }
+      .main-three > h4 {
+        font-weight: bold;
+        font-size: large;
+        padding-top: 20px;
+      }
+      .main-three > ul > li {
+        padding: 5px;
+      }
+
+      table {
+        width: 80%;
+        height: 300px;
+        line-height: 60px;
+
+        border-radius: 10px;
+        border: 1px solid #444444;
+        border-collapse: collapse;
+        border-radius: 20px;
+      }
+      th,
+      td {
+        border: 1px solid #444444;
+      }
+      
+      .main-four {
+        background-color: white;
+        width: 790px;
+        /* display: flex; */
+        justify-content: center;
+
+        height: 40%;
+        padding: 40px 50px;
+        margin-top: 20px;
+
+        border-radius: 20px;
+      }
+      .main-four > h3 {
+        font-weight: bold;
+        font-size: x-large;
+        padding: 10px;
+      }
+      .main-four > ul {
+        padding: 10px;
+        margin-bottom: 10px;
+        font-size: large;
+      }
+      .main-four > ul > li {
+        padding: 5px;
+      }
+
+      .main-four > p {
+        font-size: large;
+        margin: 0px 10px;
+      }
+      .main-four > h4 {
+        font-size: large;
+        margin: 30px 10px 10px 10px;
+      }
+
+      /* aside */
+      .aside {
+        width: 370px;
+        height: 400px;
+        margin-top: 20px;
+        background-color: white;
+        position: absolute;
+        right: 0.5%;
+        left: 100%;
+        position: sticky;
+        top: 0%;
+        bottom: 49%;
+        display: flex;
+        justify-content: center;
+        align-items: end;
+
+        border-radius: 20px;
+      }
+
+      .squre {
+        background-color: #3498db;
+        width: 200px;
+        height: 100px;
+        border-radius: 20px;
+        margin: 20px;
+        font-size: xx-large;
+        color: white;
+        text-align: center;
+        line-height: 300%;
+      }
+      /* --------------------------------footer---------------------------- */
+      /* footer {
         background-color: #2a2a2a;
-      }
-      .footer_inner {
+        position: absolute;
+        top: 2500px;
+    }
+    .footer_inner {
+         display: flex;
         width: 1280px;
         margin: 0 auto;
         padding: 20px 0;
+        position: relative;
+        top: 100%;
       }
       .footer_inner p {
         color: #fff;
+      } */
+
+      .disc {
+        list-style-type: disc;
       }
     </style>
   </head>
@@ -112,15 +351,160 @@
           </div>
           <a href="#" class="login"><i class="fa-solid fa-user-large"></i></a>
 
-          <input type="text" class="input_style" />
-          <a href="./login" class="login">로그인</a>
+          <!-- <input type="text" class="input_style" />
+          <a href="./login" class="login">로그인</a> -->
         </nav>
       </div>
     </header>
     <div class="content">
-      <div class="inner"></div>
+      <div class="inner">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide"><img src="../static/img/swiper-football1.jpeg" alt=""></div>
+              <div class="swiper-slide"><img src="../static/img/swiper-football2.jpeg" alt=""></div>
+              <div class="swiper-slide"><img src="../static/img/swiper-football3.jpeg" alt=""></div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        <!-- <div class="swiper"> -->
+        <!-- <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="../static/img/swiper-football1.jpeg" alt="풋살장" />
+          </div>
+          <div class="swiper-slide">
+            <img src="../static/img/swiper-football2.jpeg" alt="풋살장" />
+          </div>
+          <div class="swiper-slide">
+            <img src="../static/img/swiper-football3.jpeg" alt="풋살장" />
+          </div> -->
+          <!-- </div> -->
+        </div>
+        <!-- <button class="button1">o</button>
+        <button class="button2">o</button>
+        <button class="button3">o</button> -->
+
+        <div class="main-section">
+          <!-- main section 첫번째 박스 -->
+          <div class="main-text">
+            <h3>매치 포인트</h3>
+            <ul class="disc">
+              <li class="info_list">
+                <!-- <i class="fa-solid fa-children"></i> -->남녀 모두
+              </li>
+              <li class="info_list">
+                <!-- <i class="fa-sharp fa-solid fa-circle-star"></i>-->모든 레벨
+              </li>
+              <li class="info_list">
+                <!-- <i class="fa-light fa-circle-star"></i> -->운동화
+              </li>
+              <li class="info_list">10~18명</li>
+            </ul>
+          </div>
+
+          <!--main section 두번째 박스 -->
+          <div class="main-two">
+            <h3>구장 특이사항</h3>
+            <ul class="disc">
+              <li>흡연: 흡연구역 외 절대 금연</li>
+              <li>화장실: O</li>
+              <li>샤워실: 이용 불가</li>
+              <li>음료자판기 사용 가능</li>
+              <li>물기에 젖은 신발로 출입 금지</li>
+            </ul>
+          </div>
+          <!-- main section 세번째 박스 -->
+          <div class="main-three">
+            <h3>매치 진행 및 취소 규정</h3>
+            <h4>매치 규칙</h4>
+            <ul class="disc">
+              <li>사람을 향한 과한 파울은 금지</li>
+              <li>모든 파울은 잠시 정지 후 경기 재개</li>
+            </ul>
+            <h4>진행 방식</h4>
+            <ul class="disc">
+              <li>운동화와 개인 음료만 준비해주세요</li>
+              <li>매니저가 경기 진행을 도와드려요</li>
+              <li>친구끼리 실력이 맞지 않으면 다른 팀이 될 수 있어요</li>
+            </ul>
+            <h4>일반 취소 규정</h4>
+            <ul class="disc">
+              <li>
+                매치 시작 1시간 30분 전까지 최소 인원이 모이지 않으면 매치를
+                취소해요
+              </li>
+              <li>
+                매치가 취소되면 카카오톡 혹은 문자를 통해 안내드리고 캐시를
+                돌려드려요
+              </li>
+            </ul>
+            <h4>특수 취소 규정(우천)</h4>
+            <ul class="disc">
+              <li>
+                다수의 인원이 취소하거나, 구장 상태가 좋지 않아 진행이 어렵다면
+                <br />매치 시작 1시간 30분 이내라도 매치를 취소해요.
+              </li>
+              <li>
+                현장에서 매치가 취소되거나 중단되면 진행하지 못한 시간만큼
+                캐시로 돌려드려요.
+              </li>
+            </ul>
+          </div>
+          <div class="main-four">
+            <h3>환불 정책</h3>
+            <p>매치 2일 전 자정까지 무료로 취소할 수 있어요</p>
+            <h4>신청 취소 시 환불 기준</h4>
+            <table class="border-radius">
+              <tr>
+                <th>결제 후 30분 이내</th>
+                <th>무료 취소(하루 1회 제한)</th>
+              </tr>
+              <tr>
+                <th>매치 2일 전</th>
+                <th>무료 취소</th>
+              </tr>
+              <tr>
+                <th>매치 1일 전</th>
+                <th>80% 환급</th>
+              </tr>
+              <tr>
+                <th>매치 시작 90분 전까지</th>
+                <th>20% 환급</th>
+              </tr>
+              <tr>
+                <th>매치 시작 90분 이내</th>
+                <th>0%(환급 불가)</th>
+              </tr>
+            </table>
+            <h4>그 외 취소 기준</h4>
+            <ul class="disc">
+              <li>
+                결제 후 30분 이내에 취소하더라도, 매치 시작 1시간 30분 이내라면
+                환불되지 않습니다
+              </li>
+              <li>
+                강수량 1mm 이상의 예보가 있다면 매치 시작 4시간 전에 '강수 안내
+                알림톡'을 발송합니다
+              </li>
+              <li>
+                '강수 안내 알림톡'을 받고, 매치 시작 1시간 30분 전까지 취소하면
+                전액 환불됩니다
+              </li>
+            </ul>
+          </div>
+          <aside class="aside">
+            <a href="#"
+              ><button onclick="btn()">
+                <div class="squre">신청하기</div>
+                <!--<i class="fa-solid fa-square"></i>-->
+              </button></a
+            >
+          </aside>
+        </div>
+      </div>
     </div>
-    <footer>
+    <!-- footer -->
+    <!-- <footer>
       <div class="footer_inner">
         <p>내용</p>
         <p>내용</p>
@@ -134,7 +518,22 @@
         <p>내용</p>
         <p>내용</p>
       </div>
-    </footer>
+    </footer> -->
+
     <script src="../static/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+     function btn (){
+        alert('신청되었습니다')
+     }
+
+      
+      var swiper = new Swiper(".mySwiper", {
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
   </body>
 </html>
