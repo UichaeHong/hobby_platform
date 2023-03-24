@@ -10,14 +10,18 @@ require("dotenv").config();
 const MongoClient = require("mongodb").MongoClient;
 
 var db;
-MongoClient.connect(process.env.DB_URL, { useUnifiedTopology: true }, (error, client) => {
-  if (error) return console.log("error");
-  db = client.db("CODINGON");
-  // listen
-  http.listen(process.env.PORT, () => {
-    console.log("listen");
-  });
-});
+MongoClient.connect(
+  process.env.DB_URL,
+  { useUnifiedTopology: true },
+  (error, client) => {
+    if (error) return console.log("error");
+    db = client.db("CODINGON");
+    // listen
+    http.listen(process.env.PORT, () => {
+      console.log("listen");
+    });
+  }
+);
 
 //passport
 const passport = require("passport");
@@ -26,7 +30,9 @@ const session = require("express-session");
 const { ReplSet } = require("mongodb/lib/core");
 const { currentLogger } = require("mongodb/lib/core/connection/logger");
 
-app.use(session({ secret: "비밀코드", resave: true, saveUninitialized: false }));
+app.use(
+  session({ secret: "비밀코드", resave: true, saveUninitialized: false })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -57,7 +63,9 @@ app.get("/logout", (req, res, next) => {
       return next(err);
     } else {
       console.log("로그아웃됨");
-      res.send("<script>location.href='/main'; alert('로그아웃 되었습니다!');</script>");
+      res.send(
+        "<script>location.href='/main'; alert('로그아웃 되었습니다!');</script>"
+      );
     }
   });
 });
@@ -180,10 +188,12 @@ app.post("/signup", async (req, result) => {
           console.log("유저정보 저장완료");
         }
       );
-      result.redirect("/");
+      result.redirect("/login");
     } else {
       console.log("중복자 발견");
-      result.send("<script>location.href='/signup'; alert('ID가 중복되었어요!');</script>");
+      result.send(
+        "<script>location.href='/signup'; alert('ID가 중복되었어요!');</script>"
+      );
     }
   });
 });
