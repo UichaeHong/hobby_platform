@@ -115,9 +115,9 @@ app.set("view engine", "ejs");
 app.set("/views", "views");
 app.use("/static", express.static(__dirname + "/static"));
 
-// 나중에 라우팅될 코드 get 요청 이용해서 작성
-app.get("/DetailedPage", (req, res) => {
-  res.render("DetailedPage");
+// 바로 지울 코드
+app.get("/text", (req, res) => {
+  res.render("text");
 });
 // 로딩페이지
 app.get("/loading", (req, res) => {
@@ -132,6 +132,10 @@ app.get("/main", (req, result) => {
       console.log(res);
       result.render("main.ejs", { data: res });
     });
+});
+// 상세페이지
+app.get("/DetailedPage", (req, res) => {
+  res.render("DetailedPage");
 });
 app.get("/main2", (req, res) => {
   res.render("main2");
