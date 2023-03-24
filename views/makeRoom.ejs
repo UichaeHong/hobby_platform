@@ -7,6 +7,7 @@
     <title>SignUp</title>
     <link rel="stylesheet" href="../static/css/common.css" />
     <script src="../static/js/signup.js" defer></script>
+    <script src="https://kit.fontawesome.com/65a524014b.js" crossorigin="anonymous"></script>
     <style>
       header {
         width: 100%;
@@ -39,11 +40,15 @@
     <header>
       <div class="header_inner">
         <h1 class="logo">
-          <a href="#"> 플랫폼 </a>
+          <a href="/main_logout">Hobby</a>
         </h1>
         <nav>
-          <input type="text" class="input_style" />
-          <a href="#" class="login">로그인</a>
+          <div class="input_search">
+            <input type="text" class="input_style" />
+            <button type="button" class="input_btnsearch">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
         </nav>
       </div>
     </header>
@@ -52,7 +57,7 @@
       <div class="main_container">
         <div class="imgs slide_signup_img"></div>
         <div class="signup_form">
-          <form action="#" method="POST">
+          <form action="/makeRoom" method="POST">
             <!-- 타이틀 -->
             <div class="form_title">
               <h2>혼자하기 싫을땐?</h2>
@@ -67,7 +72,17 @@
 
               <div class="form_input">
                 <span>날짜</span>
-                <input type="date" name="date" />
+                <input type="date" name="date" min="2023-03-25" />
+              </div>
+
+              <div class="form_input">
+                <span>카테고리</span>
+                <select class="form_input" value="남자" name="category">
+                  <option>축구</option>
+                  <option>야구</option>
+                  <option>농구</option>
+                  <option>배구</option>
+                </select>
               </div>
 
               <div class="form_input">

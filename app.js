@@ -1,17 +1,20 @@
 const express = require("express");
 const app = express();
-const PORT = 8080;
 app.use(express.urlencoded({ extended: true }));
+const http = require("http").createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(http);
+require("dotenv").config();
+
 //DB
 const MongoClient = require("mongodb").MongoClient;
-const URL =
-  "mongodb+srv://admin:qwer1234@cluster0.paftxqv.mongodb.net/CODINGON?retryWrites=true&w=majority";
+
 var db;
-MongoClient.connect(URL, { useUnifiedTopology: true }, (error, client) => {
+MongoClient.connect(process.env.DB_URL, { useUnifiedTopology: true }, (error, client) => {
   if (error) return console.log("error");
   db = client.db("CODINGON");
   // listen
-  app.listen(PORT, () => {
+  http.listen(process.env.PORT, () => {
     console.log("listen");
   });
 });
@@ -23,9 +26,7 @@ const session = require("express-session");
 const { ReplSet } = require("mongodb/lib/core");
 const { currentLogger } = require("mongodb/lib/core/connection/logger");
 
-app.use(
-  session({ secret: "비밀코드", resave: true, saveUninitialized: false })
-);
+app.use(session({ secret: "비밀코드", resave: true, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -36,13 +37,30 @@ app.get("/login", (req, res) => {
 app.get("/login_fail", (req, res) => {
   res.render("login_fail");
 });
+
 app.post(
   "/login",
-  passport.authenticate("local", { failureRedirect: "/login_fail" }),
+  passport.authenticate("local", {
+    failureRedirect: "/login_fail",
+  }),
   function (req, res) {
-    res.redirect("/main");
+    res.render("main_logout");
   }
 );
+app.get("/main_logout", logined, (req, res) => {
+  res.render("main_logout");
+});
+
+app.get("/logout", (req, res, next) => {
+  req.logOut((err) => {
+    if (err) {
+      return next(err);
+    } else {
+      console.log("로그아웃됨");
+      res.send("<script>location.href='/main'; alert('로그아웃 되었습니다!');</script>");
+    }
+  });
+});
 
 passport.use(
   new LocalStrategy(
@@ -66,16 +84,32 @@ passport.use(
     }
   )
 );
+
 // id를 이용해 세션을 저장(로그인 성공시 발동)
 passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
 
 // 마이페이지 접속시
-passport.deserializeUser(function (id, done) {
-  done(null, {});
+passport.deserializeUser(function (email, done) {
+  console.log(11);
+  db.collection("User_Info").findOne({ id: email }, function (err, res) {
+    console.log(res);
+    done(null, res);
+  });
 });
 
+function logined(req, res, next) {
+  console.log(req.user);
+  if (req.user) {
+    next();
+  } else {
+    res.send("<script>location.href='/main'; alert('로그인하세요')</script>");
+  }
+}
+app.get("/DetailedPage", logined, (req, res) => {
+  res.render("DetailedPage");
+});
 // static & views 설정
 app.set("view engine", "ejs");
 app.set("/views", "views");
@@ -149,26 +183,57 @@ app.post("/signup", async (req, result) => {
       result.redirect("/");
     } else {
       console.log("중복자 발견");
-      result.send(
-        "<script>location.href='/signup'; alert('ID가 중복되었어요!');</script>"
-      );
+      result.send("<script>location.href='/signup'; alert('ID가 중복되었어요!');</script>");
     }
   });
 });
 
-app.post("/makeRoom", (req, res) => {
+app.post("/makeRoom", logined, (req, res) => {
   const r = req.body;
+  let img_src;
+  switch (r.category) {
+    case "축구":
+      img_src = "../static/img/soccer.jpg";
+      break;
+    case "야구":
+      img_src = "../static/img/baseball.jpeg";
+      break;
+    case "농구":
+      img_src = "../static/img/basketball.jpeg";
+      break;
+    case "배구":
+      img_src = "../static/img/volleyball.jpeg";
+    default:
+      break;
+  }
+  console.log(img_src);
   db.collection("Room").insertOne(
     {
+      src: img_src,
       title: r.title,
       date: r.date,
       location: r.location,
       personnel: r.personnel,
       price: r.price,
+      category: r.category,
     },
     function (err, res) {
       console.log("방정보 저장완료");
     }
   );
-  res.redirect("/");
+  res.redirect("/main_logout");
+});
+
+// 채팅
+app.get("/chatRoom", (req, res) => {
+  res.render("chatRoom");
+});
+
+io.on("connection", function (socket) {
+  console.log("연결됨");
+
+  socket.on("user-send", function (data) {
+    console.log(data);
+    io.emit("broadcast", data); // 모든 사람들에게 전송
+  });
 });
