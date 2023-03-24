@@ -119,10 +119,13 @@ app.get("/DetailedPage/:id", logined, (req, result) => {
   let getId = req.params.id;
   console.log("getId:", getId);
   console.log("getId:", typeof getId);
-  db.collection("Room").findOne({ _id: mongodb.ObjectId(getId) }, function (err, res) {
-    console.log("방정보", res);
-    result.render("DetailedPage", { data: res });
-  });
+  db.collection("Room").findOne(
+    { _id: mongodb.ObjectId(getId) },
+    function (err, res) {
+      console.log("방정보", res);
+      result.render("DetailedPage", { data: res });
+    }
+  );
 });
 // static & views 설정
 app.set("view engine", "ejs");
