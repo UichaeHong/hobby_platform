@@ -7,6 +7,10 @@
     <title>SignUp</title>
     <link rel="stylesheet" href="../static/css/common.css" />
     <script src="../static/js/signup.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/65a524014b.js"
+      crossorigin="anonymous"
+    ></script>
     <style>
       header {
         width: 100%;
@@ -39,11 +43,16 @@
     <header>
       <div class="header_inner">
         <h1 class="logo">
-          <a href="#"> 플랫폼 </a>
+          <a href="/main">Hobby</a>
         </h1>
         <nav>
-          <input type="text" class="input_style" />
-          <a href="#" class="login">로그인</a>
+          <div class="input_search">
+            <input type="text" class="input_style" />
+            <button type="button" class="input_btnsearch">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+          <a href="/login" class="login"><i class="fa-solid fa-user-large"></i></a>
         </nav>
       </div>
     </header>

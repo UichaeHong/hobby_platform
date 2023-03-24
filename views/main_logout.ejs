@@ -6,16 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>메인</title>
     <link rel="stylesheet" href="./../static/css/common.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
-    <script
-      src="https://kit.fontawesome.com/65a524014b.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/65a524014b.js" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script
@@ -42,9 +36,6 @@
       header .header_inner .logo {
         font-weight: 700;
         font-size: 32px;
-      }
-      header .header_inner .logo a {
-        letter-spacing: -2px;
       }
       header .header_inner .login i {
         font-size: 20px;
@@ -95,21 +86,10 @@
       .footer_inner {
         width: 1280px;
         margin: 0 auto;
-        padding: 60px 0;
+        padding: 20px 0;
       }
       .footer_inner p {
-        line-height: 1.5;
         color: #fff;
-      }
-      .footer_inner .title {
-        font-weight: 700;
-        font-size: 18px;
-        text-decoration: underline;
-      }
-      .footer_inner .copyright {
-        font-weight: 300;
-        font-weight: 200;
-        font-size: 14px;
       }
       .mySwiper {
         margin-top: 20px;
@@ -144,7 +124,6 @@
         justify-content: center;
         font-size: 18px;
         letter-spacing: 2px;
-        transform: translateX(-50%);
       }
 
       .swiper-slide img {
@@ -205,9 +184,6 @@
       .datalist li:nth-child(3n) {
         width: calc(33.4% - 22px);
       }
-      .datalist li:hover .list_box .img_box img {
-        scale: 1.2;
-      }
       .list_box {
         position: relative;
       }
@@ -220,7 +196,6 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: 0.2s all;
       }
       .list_box .info {
         padding: 20px 0;
@@ -279,7 +254,6 @@
       }
       /* 달력 */
       .calendar_box td {
-        position: relative;
         width: 45px;
         height: 45px;
         vertical-align: middle;
@@ -313,34 +287,21 @@
       }
 
       .today {
-      }
-      .today::before,
-      .choiceDay::before {
-        content: "";
-        display: inline-block;
-        width: 40px;
-        height: 40px;
         background-color: #ffca64;
         cursor: pointer;
         border-radius: 50%;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: -1;
       }
 
       .futureDay {
         cursor: pointer;
-        /* background-color: #ffffff; */
+        background-color: #ffffff;
       }
+
       .futureDay.choiceDay,
       .today.choiceDay {
-        color: #fff !important;
-        cursor: pointer;
-      }
-      .choiceDay::before {
         background-color: #3e85ef;
+        color: #fff;
+        cursor: pointer;
       }
 
       /* 탭메뉴 */
@@ -355,81 +316,13 @@
         color: red;
         cursor: pointer;
       }
-
-      @media screen and (max-width: 1310px) {
-        header .header_inner {
-          width: 100%;
-          padding: 0 20px;
-        }
-        footer .footer_inner {
-          width: 100%;
-          padding: 60px 20px;
-        }
-        .inner {
-          width: 100%;
-          padding: 0 20px;
-        }
-      }
-      @media screen and (max-width: 1200px) {
-        .datalist li,
-        .datalist li:nth-child(3n) {
-          width: calc(50% - 15px);
-        }
-        .list_box .img_box {
-          height: 230px;
-        }
-      }
-      @media screen and (max-width: 1020px) {
-        .content {
-          padding-bottom: 50px;
-        }
-        .datalist {
-          gap: 20px 30px;
-        }
-        .datalist_wrap {
-          margin-top: 40px;
-          flex-direction: column;
-          gap: 40px;
-        }
-        .datalist_lbox {
-          width: 100%;
-          min-width: auto;
-        }
-        .calendar {
-          width: 100%;
-        }
-        .category_list {
-          margin-top: 40px;
-        }
-        .swiper-pagination {
-          width: 70px;
-          height: 30px;
-          font-size: 14px;
-        }
-        .input_search input:focus {
-          width: 200px;
-        }
-      }
-      @media screen and (max-width: 560px) {
-        .datalist li,
-        .datalist li:nth-child(3n) {
-          width: 100%;
-        }
-        .list_box .info .title {
-          font-size: 18px;
-          font-weight: 700;
-        }
-        .list_box .info p {
-          font-size: 14px;
-        }
-      }
     </style>
   </head>
   <body>
     <header>
       <div class="header_inner">
         <h1 class="logo">
-          <a href="/main">H<i class="fa-brands fa-spotify"></i>BBY</a>
+          <a href="/main_logout">Hobby</a>
         </h1>
         <nav>
           <div class="input_search">
@@ -438,9 +331,7 @@
               <i class="fa-solid fa-magnifying-glass"></i>
             </button>
           </div>
-          <a href="/login" class="login"
-            ><i class="fa-solid fa-user-large"></i
-          ></a>
+          <a href="/logout" class="logout"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
         </nav>
       </div>
     </header>
@@ -472,9 +363,7 @@
         </script>
 
         <ul class="category_list">
-          <li value="0" class="current" data-tab="tab-1">
-            <a href="#">전체보기</a>
-          </li>
+          <li value="0" class="current" data-tab="tab-1"><a href="#">전체보기</a></li>
           <li value="1" data-tab="tab-2"><a href="#">축구</a></li>
           <li value="2" data-tab="tab-3"><a href="#">야구</a></li>
           <li value="3" data-tab="tab-4"><a href="#">농구</a></li>
@@ -488,16 +377,11 @@
                 <table class="calendar">
                   <thead>
                     <tr>
-                      <td onClick="prevCalendar();" style="cursor: pointer">
-                        &#60;
-                      </td>
+                      <td onClick="prevCalendar();" style="cursor: pointer">&#60;</td>
                       <td colspan="5">
-                        <span id="calYear"></span>년
-                        <span id="calMonth"></span>월
+                        <span id="calYear"></span>년 <span id="calMonth"></span>월
                       </td>
-                      <td onClick="nextCalendar();" style="cursor: pointer">
-                        &#62;
-                      </td>
+                      <td onClick="nextCalendar();" style="cursor: pointer">&#62;</td>
                     </tr>
                     <tr>
                       <td>일</td>
@@ -529,9 +413,17 @@
     <script src="../static/js/main.js"></script>
     <footer>
       <div class="footer_inner">
-        <p class="title">포스코X코딩온 KDT6기</p>
-        <p class="address">주소 : 서울특별시 마포구 숭문 4길 6</p>
-        <p class="copyright">ⓒ 2023 CODINGON, Inc. All Rights Reserved</p>
+        <p>내용</p>
+        <p>내용</p>
+        <p>내용</p>
+        <p>내용</p>
+        <p>내용</p>
+        <p>내용</p>
+        <p>내용</p>
+        <p>내용</p>
+        <p>내용</p>
+        <p>내용</p>
+        <p>내용</p>
       </div>
     </footer>
   </body>

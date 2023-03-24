@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>메인</title>
     <link rel="stylesheet" href="./../static/css/common.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
     <script
@@ -15,7 +18,11 @@
     ></script>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.min.js"
+      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+      crossorigin="anonymous"
+    ></script>
     <script src="../static/js/main.js" defer></script>
 
     <style>
@@ -310,27 +317,70 @@
       .tab-content.current {
         display: block;
       }
+
+      #talk {
+        color: red;
+        cursor: pointer;
+      }
+
+      @media screen and (max-width: 1310px) {
+        header .header_inner {
+          width: 100%;
+          padding: 0 20px;
+        }
+        footer .footer_inner {
+          width: 100%;
+          padding: 0 20px;
+        }
+        .inner {
+          width: 100%;
+          padding: 0 20px;
+        }
+      }
+      @media screen and (max-width: 1200px) {
+        .datalist li,
+        .datalist li:nth-child(3n) {
+          width: calc(50% - 15px);
+        }
+      }
+      @media screen and (max-width: 1020px) {
+        .content {
+          padding-bottom: 50px;
+        }
+        .datalist_wrap {
+          flex-direction: column;
+        }
+        .datalist_lbox {
+          width: 100%;
+        }
+        .calendar {
+          width: 100%;
+        }
+      }
+      @media screen and (max-width: 560px) {
+        .datalist li,
+        .datalist li:nth-child(3n) {
+          width: 100%;
+        }
+      }
     </style>
   </head>
   <body>
     <header>
       <div class="header_inner">
         <h1 class="logo">
-          <a href="#">Hobby</a>
+          <a href="/main">Hobby</a>
         </h1>
         <nav>
-
           <div class="input_search">
             <input type="text" class="input_style" />
             <button type="button" class="input_btnsearch">
               <i class="fa-solid fa-magnifying-glass"></i>
             </button>
           </div>
-          <a href="#" class="login"><i class="fa-solid fa-user-large"></i></a>
-
-          <!-- <input type="text" class="input_style" />
-          <a href="./login" class="login">로그인</a> -->
-
+          <a href="/login" class="login"
+            ><i class="fa-solid fa-user-large"></i
+          ></a>
         </nav>
       </div>
     </header>
@@ -345,11 +395,8 @@
               <img src="../static/img/banner-starter_pc.png" alt="" />
             </div>
           </div>
-          <!-- <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div> -->
           <div class="swiper-pagination"></div>
         </div>
-
         <script>
           let swiper = new Swiper(".mySwiper", {
             pagination: {
@@ -365,13 +412,14 @@
         </script>
 
         <ul class="category_list">
-          <li value = '0' class="current" data-tab="tab-1"><a href="#">전체보기</a></li>
-          <li value ='1' data-tab="tab-2"><a href="#">축구</a></li>
-          <li value = '2' data-tab="tab-3"><a href="#">야구</a></li>
-          <li value = '3' data-tab="tab-4"><a href="#">농구</a></li>
-          <li value = '4' data-tab="tab-5"><a href="#">배구</a></li>
-        </ul>
 
+          <li value="0" class="current" data-tab="tab-1" id="all"><a href="#">전체보기</a></li>
+
+          <li value="1" data-tab="tab-2"><a href="#">축구</a></li>
+          <li value="2" data-tab="tab-3"><a href="#">야구</a></li>
+          <li value="3" data-tab="tab-4"><a href="#">농구</a></li>
+          <li value="4" data-tab="tab-5"><a href="#">배구</a></li>
+        </ul>
 
         <div id="tab-1" class="tab-content current">
           <div class="datalist_wrap">
@@ -405,37 +453,12 @@
                   <tbody></tbody>
                 </table>
               </div>
+              <!-- <i id='talk' class="fa-regular fa-comment fa-2xl"></i> -->
             </div>
             <div class="datalist_rbox">
-              <ul class="datalist">
-                <% for(let i=0; i<data.length; i++) { %>
-                  <li>
-                    <a href="#">  
-                      <div class="list_box">
-                        <div class="img_box">
-                          <img src="../static/img/ps_11_goalline.jpg" alt="" />
-                        </div>
-                        <div class="info">
-                          <p class="small_badge">축구</p>
-                          <p class="title">
-                            <%= data[i].title %>
-                          </p>
-                          <p class="date">
-                            <i class="fa-regular fa-calendar"></i
-                            ><strong>날짜</strong> : <%= data[i].date %>
-                          </p>
-                          <p class="person">
-                            <i class="fa-solid fa-person"></i
-                            ><strong>정원</strong> : <%= data[i].personnel%>
-                          </p>
-                        </div>
-                        <div class="badge">신청가능</div>
-                      </div>
-                    </a>
-                  </li>
-                <% } %>
-              </ul>
+              <ul class="datalist"></ul>
             </div>
+          </div>
         </div>
         <div id="tab-2" class="tab-content"></div>
         <div id="tab-3" class="tab-content"></div>
@@ -443,6 +466,7 @@
         <div id="tab-5" class="tab-content"></div>
       </div>
     </div>
+    <script src="../static/js/main.js"></script>
     <footer>
       <div class="footer_inner">
         <p>내용</p>
@@ -458,6 +482,5 @@
         <p>내용</p>
       </div>
     </footer>
-    <script src="../static/js/main.js"></script>
   </body>
 </html>
