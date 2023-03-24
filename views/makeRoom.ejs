@@ -7,10 +7,7 @@
     <title>SignUp</title>
     <link rel="stylesheet" href="../static/css/common.css" />
     <script src="../static/js/signup.js" defer></script>
-    <script
-      src="https://kit.fontawesome.com/65a524014b.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/65a524014b.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <!-- 헤더 -->
@@ -26,9 +23,7 @@
               <i class="fa-solid fa-magnifying-glass"></i>
             </button>
           </div>
-          <a href="/login" class="login"
-            ><i class="fa-solid fa-user-large"></i
-          ></a>
+          <a href="/login" class="login"><i class="fa-solid fa-user-large"></i></a>
         </nav>
       </div>
     </header>
@@ -73,12 +68,22 @@
 
                 <div class="form_input">
                   <span>인원</span>
-                  <input type="text" name="personnel" placeholder="인원" />
+                  <input
+                    type="text"
+                    name="personnel"
+                    placeholder="인원"
+                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                  />
                 </div>
 
                 <div class="form_input">
                   <span>비용</span>
-                  <input type="text" name="price" placeholder="비용" />
+                  <input
+                    type="text"
+                    name="price"
+                    placeholder="비용"
+                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                  />
                 </div>
               </div>
               <!-- 버튼 -->
