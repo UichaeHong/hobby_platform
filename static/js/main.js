@@ -31,7 +31,7 @@ function makeRoom(room_data) {
       </p>
       <p class="person">
         <i class="fa-solid fa-person"></i
-        ><strong>정원</strong> : ${room_data[i].personnel}
+        ><strong>정원</strong> : ${room_data[i].personnel}명
       </p>
     </div>
     <div class="badge">신청가능</div>
@@ -47,7 +47,7 @@ function makeNewRoom(new_room_data) {
   for (let i = 0; i < new_room_data.length; i++) {
     $(".datalist").append(`
   <li>
-  <a href="/DetailedPage/${room_data[i]._id}">  
+  <a href="/DetailedPage/${new_room_data[i]._id}">  
     <div class="list_box">
       <div class="img_box">
         <img src=${new_room_data[i].src} alt="" />
@@ -273,7 +273,6 @@ $(".input_style").change(async () => {
       new_room_data.push(room_data[i]);
     }
   }
-  console.log(1);
   makeNewRoom(new_room_data);
   tabItem.forEach((title) => {
     title.classList.remove("current");
