@@ -50,7 +50,7 @@
 
 #send {
   margin-top: 15px;
-  font-family: Arial;
+  /* font-family: Arial; */
   font-size: 15px;
   color: white;
   width: 60px;

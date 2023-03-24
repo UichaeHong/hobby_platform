@@ -1,14 +1,17 @@
 .main_container {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  /* justify-content: space-between; */
 }
 
 .imgs {
   width: 500px;
-  height: 700px;
+  min-width: 500px;
+  height: calc(100vh - 120px);
+  /* height: 700px; */
   border-radius: 10px;
-  margin-top: 35px;
-  margin-left: 50px;
+  /* margin-top: 35px;
+  margin-left: 50px; */
 }
 
 .slide_login_img {
@@ -16,66 +19,219 @@
   background-size: cover;
 }
 
+.slide_signup_img {
+  background: url("../img/1.jpeg");
+  background-size: cover;
+}
+
 .form_container {
   margin-top: 50px;
 }
-.login_form {
+.loginform_box {
+  width: calc(100% - 500px);
+}
+.login_form,
+.signup_form {
   width: 500px;
-  height: 700px;
+  margin: 0 auto;
+  /* height: 700px;
   margin-top: 160px;
-  margin-right: 200px;
+  margin-right: 200px; */
 }
 
-.login_form h2 {
+.login_form h2,
+.signup_form h2 {
   font-weight: 300;
   font-size: 32px;
 }
 
-.login_form .form_title {
-  margin-top: 50px;
+.form_title {
+  /* margin-top: 50px; */
+  line-height: 38px;
 }
 
 #hobby {
   color: navy;
   font-weight: 700;
   text-decoration: none solid rgb(221, 225, 236);
+  letter-spacing: -3px;
 }
 
 .form_input input {
-  margin-top: 15px;
-  padding-left: 10px;
-  width: 500px;
-  border: 1px solid gray;
-  border-radius: 16px;
-  background-color: rgb(248, 250, 251);
-  line-height: 48px;
+  margin-top: 10px;
+  padding-left: 20px;
+  width: 100%;
+  height: 60px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #fff;
+  line-height: 60px;
 }
 
 .form_button {
-  margin-top: 15px;
-  font-family: Arial;
+  /* margin-top: 1px; */
+  /* font-family: Arial; */
   font-size: 16px;
   color: white;
-  width: 500px;
-  line-height: 48px;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
   border: none solid rgb(255, 255, 255);
   border-radius: 16px;
   background-color: rgb(23, 57, 170);
+  margin-top: 40px;
 }
 
+.form_input span {
+  display: block;
+  margin-top: 10px;
+}
+.form_input select {
+  margin-top: 15px;
+  padding-left: 20px;
+  width: 100%;
+  height: 60px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #fff;
+  line-height: 60px;
+}
+.input_container span {
+  display: block;
+  margin-top: 7px;
+}
 .etc {
   position: relative;
   margin-top: 15px;
   font-size: 12px;
   color: rgb(75, 90, 100);
+  text-align: center;
 }
-
-.etc .find_id {
-  position: absolute;
-  left: 130px;
-}
-
 .etc .signup {
-  position: absolute;
-  right: 180px;
+  margin-left: 20px;
+}
+
+.chat_form {
+  position: relative;
+  width: 500px;
+  height: 600px;
+  /* margin-top: 35px;
+  margin-right: 200px; */
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 15px;
+  overflow-y: scroll;
+  padding: 0 20px;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.chat_form::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+
+#chat_form_title {
+  height: 60px;
+  border-bottom: 1px solid #ccc;
+  margin: 0 -20px;
+  line-height: 60px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -1.25px;
+}
+
+.input_btn {
+  width: 500px;
+}
+
+#input_text {
+  margin-top: 10px;
+  padding-left: 20px;
+  width: calc(100% - 65px);
+  height: 50px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #fff;
+  line-height: 50px;
+}
+
+.line {
+  margin-top: 10px;
+  margin-left: 10px;
+  display: flex;
+}
+
+.chat_wrap {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chat_box {
+  /* ;
+  padding: 5px;
+  max-width: 200px; */
+  background-color: #f7f7f7;
+  margin-left: auto;
+  padding: 9px 20px 9px;
+  border-radius: 10px 0 10px 10px;
+  color: #fff;
+  font-size: 14px;
+  color: #333;
+}
+
+.mine {
+  background-color: #3498db;
+  color: #fff;
+}
+
+#send {
+  margin-top: 15px;
+  /* font-family: Arial; */
+  font-size: 15px;
+  color: white;
+  width: 60px;
+  line-height: 40px;
+  border: none solid rgb(255, 255, 255);
+  border-radius: 16px;
+  background-color: #333;
+}
+
+@media screen and (max-width: 1050px) {
+  .login_form,
+  .signup_form {
+    margin-top: 50px;
+  }
+  .slide_login_img,
+  .slide_signup_img {
+    display: none;
+  }
+  .loginform_box {
+    width: 100%;
+  }
+  .chat_wrap {
+    padding: 0 20px;
+  }
+  .input_btn {
+    width: 100%;
+  }
+  .chat_form {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .main_container {
+    width: 100%;
+    padding: 0 20px;
+  }
+  .login_form,
+  .signup_form {
+    width: 100%;
+  }
+  .chat_wrap {
+    padding: 0;
+  }
 }

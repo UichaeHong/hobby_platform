@@ -1,13 +1,12 @@
 @import url("reset.css");
 @import url("font.css");
 @import url("login.css");
-@import url("signup.css");
+/* @import url("signup.css"); */
 /* 임시 css 파일 추후 삭제 예장 */
 
 /* 임시 css 파일 추후 삭제 예정
 @import url("font.css"); */
 
-/* header */
 header {
   width: 100%;
   height: 80px;
@@ -25,35 +24,13 @@ header .header_inner .logo {
   font-weight: 700;
   font-size: 32px;
 }
+header .header_inner .logo a {
+  letter-spacing: -2px;
+}
 header .header_inner .login i {
   font-size: 20px;
   margin-left: 10px;
 }
-
-/* content layout */
-.content {
-  padding-bottom: 100px;
-}
-
-.inner {
-  width: 1280px;
-  margin: 0 auto;
-}
-
-/* footer */
-footer {
-  background-color: #2a2a2a;
-}
-.footer_inner {
-  width: 1280px;
-  margin: 0 auto;
-  padding: 20px 0;
-}
-.footer_inner p {
-  color: #fff;
-}
-
-/* input */
 .input_search {
   position: relative;
   display: inline-block;
@@ -72,6 +49,11 @@ footer {
 .input_search input:focus {
   width: 300px;
 }
+button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
 .input_style {
   width: 200px;
   height: 40px;
@@ -80,9 +62,118 @@ footer {
   border-radius: 20px;
 }
 
-/* button style */
-button {
-  background: none;
-  border: 0;
-  cursor: pointer;
+.content {
+  padding-bottom: 100px;
+}
+
+.inner {
+  width: 1280px;
+  margin: 0 auto;
+}
+footer {
+  background-color: #2a2a2a;
+}
+.footer_inner {
+  width: 1280px;
+  margin: 0 auto;
+  padding: 60px 0;
+}
+.footer_inner p {
+  line-height: 1.5;
+  color: #fff;
+}
+.footer_inner .title {
+  font-weight: 700;
+  font-size: 18px;
+  text-decoration: underline;
+}
+.footer_inner .copyright {
+  font-weight: 300;
+  font-weight: 200;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 1310px) {
+  header .header_inner {
+    width: 100%;
+    padding: 0 20px;
+  }
+  footer .footer_inner {
+    width: 100%;
+    padding: 60px 20px;
+  }
+  .inner {
+    width: 100%;
+    padding: 0 20px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .datalist li,
+  .datalist li:nth-child(3n) {
+    width: calc(50% - 15px);
+  }
+  .list_box .img_box {
+    height: 230px;
+  }
+}
+@media screen and (max-width: 1020px) {
+  .swiper_wrap {
+    margin: 0 -20px;
+  }
+  .swiper-slide,
+  .mySwiper {
+    border-radius: 0 !important;
+  }
+  .mySwiper {
+    margin-top: 0 !important;
+  }
+
+  header .header_inner .logo {
+    font-size: 25px;
+  }
+  .content {
+    padding-bottom: 50px;
+  }
+  .datalist {
+    gap: 20px 30px;
+  }
+  .datalist_wrap {
+    margin-top: 40px;
+    flex-direction: column;
+    gap: 40px;
+  }
+  .datalist_lbox {
+    width: 100%;
+    min-width: auto;
+  }
+  .calendar {
+    width: 100%;
+  }
+  .category_list {
+    margin-top: 40px;
+  }
+  .swiper-pagination {
+    width: 70px;
+    height: 30px;
+    font-size: 14px;
+  }
+  .input_search input:focus {
+    width: 200px;
+  }
+}
+@media screen and (max-width: 560px) {
+  header .header_inner .logo {
+    font-size: 20px;
+  }
+  .datalist li,
+  .datalist li:nth-child(3n) {
+    width: 100%;
+  }
+  .list_box .info .title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .list_box .info p {
+    font-size: 14px;
+  }
 }
