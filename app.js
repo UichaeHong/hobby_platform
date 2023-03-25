@@ -12,14 +12,18 @@ const mongodb = require("mongodb");
 const mongoose = require("mongoose");
 
 var db;
-MongoClient.connect(process.env.DB_URL, { useUnifiedTopology: true }, (error, client) => {
-  if (error) return console.log("error");
-  db = client.db("CODINGON");
-  // listen
-  http.listen(process.env.PORT, () => {
-    console.log("listen");
-  });
-});
+MongoClient.connect(
+  process.env.DB_URL,
+  { useUnifiedTopology: true },
+  (error, client) => {
+    if (error) return console.log("error");
+    db = client.db("CODINGON");
+    // listen
+    http.listen(process.env.PORT, () => {
+      console.log("listen");
+    });
+  }
+);
 
 //passport
 const passport = require("passport");
@@ -28,7 +32,9 @@ const session = require("express-session");
 const { ReplSet } = require("mongodb/lib/core");
 const { currentLogger } = require("mongodb/lib/core/connection/logger");
 
-app.use(session({ secret: "비밀코드", resave: true, saveUninitialized: false }));
+app.use(
+  session({ secret: "비밀코드", resave: true, saveUninitialized: false })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -59,7 +65,9 @@ app.get("/logout", (req, res, next) => {
       return next(err);
     } else {
       console.log("로그아웃됨");
-      res.send("<script>location.href='/main'; alert('로그아웃 되었습니다!');</script>");
+      res.send(
+        "<script>location.href='/main'; alert('로그아웃 되었습니다!');</script>"
+      );
     }
   });
 });
@@ -128,9 +136,7 @@ app.use("/static", express.static(__dirname + "/static"));
 app.get("/text", (req, res) => {
   res.render("text");
 });
-// app.get("/DetailedPage", (req, res) => {
-//   res.render("DetailedPage");
-// });
+
 // 로딩페이지
 app.get("/loading", (req, res) => {
   res.render("loading");
@@ -173,7 +179,9 @@ app.post("/signup", async (req, result) => {
   const r = req.body;
   // id중복 체크
   if (r.name == "" || r.birthday || r.id || r.pw || r.gender) {
-    result.send("<script>location.href='/signup'; alert('제대로 입력하세요!');</script>");
+    result.send(
+      "<script>location.href='/signup'; alert('제대로 입력하세요!');</script>"
+    );
   } else {
     await db.collection("User_Info").findOne({ id: r.id }, function (err, res) {
       // 중복자 없으면
@@ -193,7 +201,9 @@ app.post("/signup", async (req, result) => {
         result.redirect("/login");
       } else {
         console.log("중복자 발견");
-        result.send("<script>location.href='/signup'; alert('ID가 중복되었어요!');</script>");
+        result.send(
+          "<script>location.href='/signup'; alert('ID가 중복되었어요!');</script>"
+        );
       }
     });
   }
@@ -219,7 +229,9 @@ app.post("/makeRoom", logined, (req, res) => {
   }
   console.log(img_src);
   if (r.title || r.date || r.location || r.personnel || r.price || r.category) {
-    res.send("<script>location.href='/makeRoom'; alert('제대로 입력하세요!');</script>");
+    res.send(
+      "<script>location.href='/makeRoom'; alert('제대로 입력하세요!');</script>"
+    );
   } else {
     db.collection("Room").insertOne(
       {
