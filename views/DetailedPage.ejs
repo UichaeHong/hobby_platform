@@ -23,7 +23,10 @@
       integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
       crossorigin="anonymous"
     ></script>
-    <script src="https://kit.fontawesome.com/65a524014b.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/65a524014b.js"
+      crossorigin="anonymous"
+    ></script>
     <style>
       body {
         background-color: #ddd;
@@ -53,8 +56,8 @@
         padding-bottom: 100px;
         width: 1280px;
 
-        padding-right: 20px;
-        padding-left: 20px;
+        /* padding-right: 20px;
+        padding-left: 20px; */
 
         height: 100%;
       }
@@ -63,7 +66,7 @@
         /* position: absolute;
         display: flex; */
 
-        width: 100%;
+        /* width: 100%; */
         height: 448px;
         margin: 0 auto;
         /* background-size: 100%; */
@@ -119,17 +122,20 @@
         width: 1280px;
       } */
       .main {
-        position: absolute;
-
+        /* position: absolute; */
+        position: relative;
         width: 1280px;
-        height: 2000px;
+        display: flex;
+        justify-content: space-between;
+        /* height: 2000px; */
         background-color: #ddd;
+        align-items: flex-start;
         /* background-color: #f7f7f7; */
         /* width: 810px; */
       }
       .main-section {
         width: calc(100% - 400px);
-        position: absolute;
+        /* position: absolute; */
 
         background-color: #ddd;
       }
@@ -139,7 +145,6 @@
         /* width: 790px; */
         width: 100%;
 
-        height: 50%;
         padding: 40px 50px;
         margin-top: 20px;
         /* height: 500px; */
@@ -164,7 +169,6 @@
         background-color: white;
         width: 100%;
 
-        height: 50%;
         padding: 40px 50px;
         margin-top: 20px;
         /* height: 500px; */
@@ -195,7 +199,6 @@
         background-color: white;
         width: 100%;
 
-        height: 50%;
         padding: 40px 50px;
         margin-top: 20px;
         /* height: 500px; */
@@ -241,7 +244,7 @@
         /* display: flex; */
         justify-content: center;
 
-        height: 40%;
+        /* height: 40%; */
         padding: 40px 50px;
         margin-top: 20px;
 
@@ -281,14 +284,14 @@
         background-color: white;
         /* position: absolute; */
         right: 0.5%;
-        left: 100%;
+        /* left: 100%; */
         position: sticky;
-        top: 0%;
-        bottom: 49%;
+        /* top: 0%; */
+        /* bottom: 49%; */
         display: flex;
         justify-content: center;
         /* align-items: end; */
-
+        top: 30px;
         border-radius: 20px;
       }
       aside > div {
@@ -311,11 +314,28 @@
 
         /* margin-right: 33%; */
       }
-      @media (max-width: 1500px) {
+
+      .swiper-pagination {
+        background-color: transparent;
+      }
+      .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
+      .swiper-pagination-horizontal.swiper-pagination-bullets
+        .swiper-pagination-bullet {
+        background-color: #fff;
+      }
+      @media (max-width: 1350px) {
+        /* .header_inner {
+          width: 100%;
+        }
+        .inner {
+          width: 100%;
+        } */
+        .content {
+          width: 100%;
+        }
+
         .main {
           width: 100%;
-          display: flex;
-          flex-direction: column;
         }
       }
 
@@ -323,25 +343,50 @@
         .content {
           width: 100%;
         }
-      }
 
-      @media (max-width: 900px) {
+        .main {
+          width: 100%;
+          display: flex;
+          flex-direction: column-reverse;
+          position: relative;
+        }
+
         .main-section {
-          width: 90%;
+          width: 100%;
           display: flex;
           flex-direction: column;
-          top: 25%;
+          /* top: 25%; */
+          position: relative;
         }
-      }
-      @media (max-width: 900px) {
+
         .aside {
-          width: 90%;
+          width: 100%;
           background-color: #f7f7f7;
+          top: 0;
           left: 0;
-          position: static;
+
+          position: relative;
+          padding: 40px 50px;
 
           /* display: flex;
           justify-content: center; */
+        }
+        .swiper_wrap01 {
+          margin: 0 -20px;
+        }
+        button {
+          width: 100%;
+          margin: 20px 0 0;
+          height: 50px;
+          line-height: 50px;
+          font-size: 20px;
+          border-radius: 5px;
+        }
+        aside > div {
+          margin: 10px 0 0;
+        }
+        aside > div:first-child {
+          margin-top: 0;
         }
       }
       @media (max-width: 500px) {
@@ -351,15 +396,9 @@
           top: 20%;
         }
       }
-      @media (max-width: 900px) {
-        .main {
-          position: relative;
-        }
-      }
-      /* @media (max-width: 800px) {
-        button {
-        }
-      } */
+
+
+
       /* --------------------------------footer---------------------------- */
 
       .disc {
@@ -387,20 +426,22 @@
     </header>
     <div class="content">
       <div class="inner">
-        <div class="swiper mySwiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img src="../static/img/0.jpeg" alt="" />
+        <div class="swiper_wrap01">
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="../static/img/0.jpeg" alt="" />
+              </div>
+              <div class="swiper-slide">
+                <img src="../static/img/1.jpeg" alt="" />
+              </div>
+              <div class="swiper-slide">
+                <img src="../static/img/2.jpeg" alt="" />
+              </div>
             </div>
-            <div class="swiper-slide">
-              <img src="../static/img/1.jpeg" alt="" />
-            </div>
-            <div class="swiper-slide">
-              <img src="../static/img/2.jpeg" alt="" />
-            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
           </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
         </div>
 
         <!-- <div class="swiper"> -->
@@ -426,11 +467,16 @@
             <div class="main-text">
               <h3>매치 포인트</h3>
               <ul class="disc">
-                <li class="info_list"><!-- <i class="fa-solid fa-children"></i> -->남녀 모두</li>
                 <li class="info_list">
-                  <!-- <i class="fa-sharp fa-solid fa-circle-star"></i>-->모든 레벨
+                  <!-- <i class="fa-solid fa-children"></i> -->남녀 모두
                 </li>
-                <li class="info_list"><!-- <i class="fa-light fa-circle-star"></i> -->운동화</li>
+                <li class="info_list">
+                  <!-- <i class="fa-sharp fa-solid fa-circle-star"></i>-->모든
+                  레벨
+                </li>
+                <li class="info_list">
+                  <!-- <i class="fa-light fa-circle-star"></i> -->운동화
+                </li>
                 <li class="info_list">10~18명</li>
               </ul>
             </div>
@@ -462,17 +508,25 @@
               </ul>
               <h4>일반 취소 규정</h4>
               <ul class="disc">
-                <li>매치 시작 1시간 30분 전까지 최소 인원이 모이지 않으면 매치를 취소해요</li>
-                <li>매치가 취소되면 카카오톡 혹은 문자를 통해 안내드리고 캐시를 돌려드려요</li>
+                <li>
+                  매치 시작 1시간 30분 전까지 최소 인원이 모이지 않으면 매치를
+                  취소해요
+                </li>
+                <li>
+                  매치가 취소되면 카카오톡 혹은 문자를 통해 안내드리고 캐시를
+                  돌려드려요
+                </li>
               </ul>
               <h4>특수 취소 규정(우천)</h4>
               <ul class="disc">
                 <li>
-                  다수의 인원이 취소하거나, 구장 상태가 좋지 않아 진행이 어렵다면
+                  다수의 인원이 취소하거나, 구장 상태가 좋지 않아 진행이
+                  어렵다면
                   <br />매치 시작 1시간 30분 이내라도 매치를 취소해요.
                 </li>
                 <li>
-                  현장에서 매치가 취소되거나 중단되면 진행하지 못한 시간만큼 캐시로 돌려드려요.
+                  현장에서 매치가 취소되거나 중단되면 진행하지 못한 시간만큼
+                  캐시로 돌려드려요.
                 </li>
               </ul>
             </div>
@@ -505,20 +559,21 @@
               <h4>그 외 취소 기준</h4>
               <ul class="disc">
                 <li>
-                  결제 후 30분 이내에 취소하더라도, 매치 시작 1시간 30분 이내라면 환불되지 않습니다
+                  결제 후 30분 이내에 취소하더라도, 매치 시작 1시간 30분
+                  이내라면 환불되지 않습니다
                 </li>
                 <li>
-                  강수량 1mm 이상의 예보가 있다면 매치 시작 4시간 전에 '강수 안내 알림톡'을
-                  발송합니다
+                  강수량 1mm 이상의 예보가 있다면 매치 시작 4시간 전에 '강수
+                  안내 알림톡'을 발송합니다
                 </li>
                 <li>
-                  '강수 안내 알림톡'을 받고, 매치 시작 1시간 30분 전까지 취소하면 전액 환불됩니다
+                  '강수 안내 알림톡'을 받고, 매치 시작 1시간 30분 전까지
+                  취소하면 전액 환불됩니다
                 </li>
               </ul>
             </div>
           </div>
           <aside class="aside">
-
             <div>제목:<%= data.title %></div>
             <div>날짜:<%= data.date %></div>
             <div>지역:<%= data.location %></div>
@@ -526,14 +581,9 @@
             <div>참가비:<%= data.price %></div>
             <div>종목:<%= data.category %></div>
 
-            
-
-            
-
             <button onclick="btn()">
               신청하기
               <i class="fa-solid fa-square"></i>
-
             </button>
 
             <!-- <a href="#"
@@ -543,9 +593,6 @@
               </button></a
 
             > -->
-
-            
-
           </aside>
           <!-- </div> -->
           <!-- </div> -->
@@ -577,9 +624,8 @@
       }
 
       var swiper = new Swiper(".mySwiper", {
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
+        pagination: {
+          el: ".swiper-pagination",
         },
       });
     </script>
