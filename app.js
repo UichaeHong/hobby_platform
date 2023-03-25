@@ -12,18 +12,14 @@ const mongodb = require("mongodb");
 const mongoose = require("mongoose");
 
 var db;
-MongoClient.connect(
-  process.env.DB_URL,
-  { useUnifiedTopology: true },
-  (error, client) => {
-    if (error) return console.log("error");
-    db = client.db("CODINGON");
-    // listen
-    http.listen(process.env.PORT, () => {
-      console.log("listen");
-    });
-  }
-);
+MongoClient.connect(process.env.DB_URL, { useUnifiedTopology: true }, (error, client) => {
+  if (error) return console.log("error");
+  db = client.db("CODINGON");
+  // listen
+  http.listen(process.env.PORT, () => {
+    console.log("listen");
+  });
+});
 
 //passport
 const passport = require("passport");
@@ -32,9 +28,7 @@ const session = require("express-session");
 const { ReplSet } = require("mongodb/lib/core");
 const { currentLogger } = require("mongodb/lib/core/connection/logger");
 
-app.use(
-  session({ secret: "비밀코드", resave: true, saveUninitialized: false })
-);
+app.use(session({ secret: "비밀코드", resave: true, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -65,9 +59,7 @@ app.get("/logout", (req, res, next) => {
       return next(err);
     } else {
       console.log("로그아웃됨");
-      res.send(
-        "<script>location.href='/main'; alert('로그아웃 되었습니다!');</script>"
-      );
+      res.send("<script>location.href='/main'; alert('로그아웃 되었습니다!');</script>");
     }
   });
 });
@@ -173,36 +165,38 @@ app.get("/signup", (req, res) => {
 });
 
 // 방만들기
-app.get("/makeRoom", (req, res) => {
+app.get("/makeRoom", logined, (req, res) => {
   res.render("makeRoom");
 });
 
 app.post("/signup", async (req, result) => {
   const r = req.body;
   // id중복 체크
-  await db.collection("User_Info").findOne({ id: r.id }, function (err, res) {
-    // 중복자 없으면
-    if (res == null) {
-      db.collection("User_Info").insertOne(
-        {
-          name: r.name,
-          birthday: r.birthday,
-          id: r.id,
-          pw: r.pw,
-          gender: r.gender,
-        },
-        function (err, res) {
-          console.log("유저정보 저장완료");
-        }
-      );
-      result.redirect("/login");
-    } else {
-      console.log("중복자 발견");
-      result.send(
-        "<script>location.href='/signup'; alert('ID가 중복되었어요!');</script>"
-      );
-    }
-  });
+  if (r.name == "" || r.birthday || r.id || r.pw || r.gender) {
+    result.send("<script>location.href='/signup'; alert('제대로 입력하세요!');</script>");
+  } else {
+    await db.collection("User_Info").findOne({ id: r.id }, function (err, res) {
+      // 중복자 없으면
+      if (res == null) {
+        db.collection("User_Info").insertOne(
+          {
+            name: r.name,
+            birthday: r.birthday,
+            id: r.id,
+            pw: r.pw,
+            gender: r.gender,
+          },
+          function (err, res) {
+            console.log("유저정보 저장완료");
+          }
+        );
+        result.redirect("/login");
+      } else {
+        console.log("중복자 발견");
+        result.send("<script>location.href='/signup'; alert('ID가 중복되었어요!');</script>");
+      }
+    });
+  }
 });
 
 app.post("/makeRoom", logined, (req, res) => {
@@ -224,25 +218,29 @@ app.post("/makeRoom", logined, (req, res) => {
       break;
   }
   console.log(img_src);
-  db.collection("Room").insertOne(
-    {
-      src: img_src,
-      title: r.title,
-      date: r.date,
-      location: r.location,
-      personnel: r.personnel,
-      price: r.price,
-      category: r.category,
-    },
-    function (err, res) {
-      console.log("방정보 저장완료");
-    }
-  );
-  res.redirect("/main_logout");
+  if (r.title || r.date || r.location || r.personnel || r.price || r.category) {
+    res.send("<script>location.href='/makeRoom'; alert('제대로 입력하세요!');</script>");
+  } else {
+    db.collection("Room").insertOne(
+      {
+        src: img_src,
+        title: r.title,
+        date: r.date,
+        location: r.location,
+        personnel: r.personnel,
+        price: r.price,
+        category: r.category,
+      },
+      function (err, res) {
+        console.log("방정보 저장완료");
+      }
+    );
+    res.redirect("/main_logout");
+  }
 });
 
 // 채팅
-app.get("/chatRoom", (req, res) => {
+app.get("/chatRoom", logined, (req, res) => {
   res.render("chatRoom");
 });
 
