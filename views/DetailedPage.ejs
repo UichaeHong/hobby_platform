@@ -6,10 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>메인</title>
     <link rel="stylesheet" href="./../static/css/common.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
-    <script src="https://kit.fontawesome.com/65a524014b.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/65a524014b.js"
+      crossorigin="anonymous"
+    ></script>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script
@@ -38,7 +44,7 @@
 
         display: flex;
 
-        justify-content: center;
+        /* justify-content: center; */
       }
 
       .content {
@@ -77,6 +83,7 @@
       /* } */
       .swiper-slide {
         /* width: 100vw; */
+        width: 100%;
       }
 
       .swiper-slide {
@@ -266,6 +273,8 @@
 
       /* aside */
       .aside {
+        display: flex;
+        flex-direction: column;
         width: 370px;
         /* height: 400px; */
         margin-top: 20px;
@@ -282,21 +291,30 @@
 
         border-radius: 20px;
       }
+      aside > div {
+        margin: 0% 20%;
+        margin-top: 3%;
+      }
 
       button {
         background-color: #3498db;
         width: 200px;
         /* height: auto; */
         border-radius: 20px;
+        /* padding: 20%; */
         margin: 20px;
         font-size: xx-large;
         color: white;
         text-align: center;
         line-height: 300%;
+        margin-left: 24%;
+        /* margin-right: 33%; */
       }
       @media (max-width: 910px) {
         .main {
           width: 100%;
+          display: flex;
+          flex-direction: column;
         }
       }
 
@@ -306,6 +324,34 @@
         }
       }
 
+      @media (max-width: 800px) {
+        .main-section {
+          width: 90%;
+          display: flex;
+          flex-direction: column;
+          top: 25%;
+        }
+      }
+      @media (max-width: 800px) {
+        .aside {
+          width: 90%;
+          background-color: #f7f7f7;
+          left: 0;
+          /* display: flex;
+          justify-content: center; */
+        }
+      }
+      @media (max-width: 500px) {
+        .main-section {
+          width: 100%;
+          background-color: #f7f7f7;
+          top: 20%;
+        }
+      }
+      @media (max-width: 800px) {
+        button {
+        }
+      }
       /* --------------------------------footer---------------------------- */
 
       .disc {
@@ -322,9 +368,9 @@
         <nav>
           <div class="input_search">
             <input type="text" class="input_style" />
-            <button type="button" class="input_btnsearch">
+            <!-- <button type="button" class="input_btnsearch">
               <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
+            </button> -->
           </div>
 
           <a href="#" class="login"><i class="fa-solid fa-user-large"></i></a>
@@ -464,25 +510,34 @@
             </div>
           </div>
           <aside class="aside">
-            <div></div>
+
+            <div>제목:<%= data.title %></div>
+            <div>날짜:<%= data.date %></div>
+            <div>지역:<%= data.location %></div>
+            <div>인원:<%= data.personnel %></div>
+            <div>참가비:<%= data.price %></div>
+            <div>종목:<%= data.category %></div>
+
+            
+
+            
 
             <button onclick="btn()">
               신청하기
               <i class="fa-solid fa-square"></i>
+
             </button>
 
-            <div><%= data.title %></div>
-            <div><%= data.date %></div>
-            <div><%= data.location %></div>
-            <div><%= data.personnel %></div>
-            <div><%= data.price %></div>
-            <div><%= data.category %></div>
-            <a href="#"
+            <!-- <a href="#"
               ><button onclick="btn()">
                 <div class="squre">신청하기</div>
-                <!--<i class="fa-solid fa-square"></i>-->
+                <i class="fa-solid fa-square"></i>
               </button></a
-            >
+
+            > -->
+
+            
+
           </aside>
           <!-- </div> -->
           <!-- </div> -->
