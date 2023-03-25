@@ -111,10 +111,13 @@ app.get("/DetailedPage/:id", logined, (req, result) => {
   let getId = req.params.id;
   console.log("getId:", getId);
   console.log("getId:", typeof getId);
-  db.collection("Room").findOne({ _id: mongodb.ObjectId(getId) }, function (err, res) {
-    console.log("방정보", res);
-    result.render("DetailedPage", { data: res });
-  });
+  db.collection("Room").findOne(
+    { _id: mongodb.ObjectId(getId) },
+    function (err, res) {
+      console.log("방정보", res);
+      result.render("DetailedPage", { data: res });
+    }
+  );
 });
 // static & views 설정
 app.set("view engine", "ejs");
@@ -125,6 +128,9 @@ app.use("/static", express.static(__dirname + "/static"));
 app.get("/text", (req, res) => {
   res.render("text");
 });
+// app.get("/DetailedPage", (req, res) => {
+//   res.render("DetailedPage");
+// });
 // 로딩페이지
 app.get("/loading", (req, res) => {
   res.render("loading");
