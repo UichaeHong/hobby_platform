@@ -69,7 +69,7 @@
         width: 100%;
         height: 448px;
         margin: 0 auto;
-        background-size: 100%;
+        /* background-size: 100%; */
 
         /* width: 100%; */
         /* height: 100%; */
@@ -278,11 +278,11 @@
       .aside {
         display: flex;
         flex-direction: column;
-        width: 370px;
+        width: 360px;
         /* height: 400px; */
         margin-top: 20px;
         background-color: white;
-        position: absolute;
+        /* position: absolute; */
         right: 0.5%;
         left: 100%;
         position: sticky;
@@ -301,19 +301,20 @@
 
       button {
         background-color: #3498db;
-        width: 200px;
+        width: 90%;
         /* height: auto; */
         border-radius: 20px;
         /* padding: 20%; */
-        margin: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
         font-size: xx-large;
         color: white;
         text-align: center;
         line-height: 300%;
-        margin-left: 24%;
+
         /* margin-right: 33%; */
       }
-      @media (max-width: 910px) {
+      @media (max-width: 1500px) {
         .main {
           width: 100%;
           display: flex;
@@ -321,13 +322,13 @@
         }
       }
 
-      @media (max-width: 910px) {
+      @media (max-width: 1500px) {
         .content {
           width: 100%;
         }
       }
 
-      @media (max-width: 800px) {
+      @media (max-width: 900px) {
         .main-section {
           width: 90%;
           display: flex;
@@ -335,11 +336,13 @@
           top: 25%;
         }
       }
-      @media (max-width: 800px) {
+      @media (max-width: 900px) {
         .aside {
           width: 90%;
           background-color: #f7f7f7;
           left: 0;
+          position: static;
+
           /* display: flex;
           justify-content: center; */
         }
@@ -351,10 +354,15 @@
           top: 20%;
         }
       }
-      @media (max-width: 800px) {
-        button {
+      @media (max-width: 900px) {
+        .main {
+          position: relative;
         }
       }
+      /* @media (max-width: 800px) {
+        button {
+        }
+      } */
       /* --------------------------------footer---------------------------- */
 
       .disc {
