@@ -5,18 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>메인</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="stylesheet" href="./../static/css/common.css" />
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
-    <script
-      src="https://kit.fontawesome.com/65a524014b.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/65a524014b.js" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script
@@ -39,9 +33,8 @@
               <i class="fa-solid fa-magnifying-glass"></i>
             </button>
           </div>
-          <a href="/login" class="login"
-            ><i class="fa-solid fa-user-large"></i
-          ></a>
+          <a href="/login" class="login"><i class="fa-solid fa-user-large"></i></a>
+          <a href="/chatRoom" class="login"><i class="fa-regular fa-comment fa-xl"></i></a>
         </nav>
       </div>
     </header>
@@ -91,16 +84,11 @@
                 <table class="calendar">
                   <thead>
                     <tr>
-                      <td onClick="prevCalendar();" style="cursor: pointer">
-                        &#60;
-                      </td>
+                      <td onClick="prevCalendar();" style="cursor: pointer">&#60;</td>
                       <td colspan="5">
-                        <span id="calYear"></span>년
-                        <span id="calMonth"></span>월
+                        <span id="calYear"></span>년 <span id="calMonth"></span>월
                       </td>
-                      <td onClick="nextCalendar();" style="cursor: pointer">
-                        &#62;
-                      </td>
+                      <td onClick="nextCalendar();" style="cursor: pointer">&#62;</td>
                     </tr>
                     <tr>
                       <td>일</td>

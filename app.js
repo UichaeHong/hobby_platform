@@ -166,27 +166,31 @@ app.get("/makeRoom", logined, (req, res) => {
 app.post("/signup", async (req, result) => {
   const r = req.body;
   // id중복 체크
-  await db.collection("User_Info").findOne({ id: r.id }, function (err, res) {
-    // 중복자 없으면
-    if (res == null) {
-      db.collection("User_Info").insertOne(
-        {
-          name: r.name,
-          birthday: r.birthday,
-          id: r.id,
-          pw: r.pw,
-          gender: r.gender,
-        },
-        function (err, res) {
-          console.log("유저정보 저장완료");
-        }
-      );
-      result.redirect("/login");
-    } else {
-      console.log("중복자 발견");
-      result.send("<script>location.href='/signup'; alert('ID가 중복되었어요!');</script>");
-    }
-  });
+  if (r.name == "" || r.birthday || r.id || r.pw || r.gender) {
+    result.send("<script>location.href='/signup'; alert('제대로 입력하세요!');</script>");
+  } else {
+    await db.collection("User_Info").findOne({ id: r.id }, function (err, res) {
+      // 중복자 없으면
+      if (res == null) {
+        db.collection("User_Info").insertOne(
+          {
+            name: r.name,
+            birthday: r.birthday,
+            id: r.id,
+            pw: r.pw,
+            gender: r.gender,
+          },
+          function (err, res) {
+            console.log("유저정보 저장완료");
+          }
+        );
+        result.redirect("/login");
+      } else {
+        console.log("중복자 발견");
+        result.send("<script>location.href='/signup'; alert('ID가 중복되었어요!');</script>");
+      }
+    });
+  }
 });
 
 app.post("/makeRoom", logined, (req, res) => {
@@ -208,21 +212,25 @@ app.post("/makeRoom", logined, (req, res) => {
       break;
   }
   console.log(img_src);
-  db.collection("Room").insertOne(
-    {
-      src: img_src,
-      title: r.title,
-      date: r.date,
-      location: r.location,
-      personnel: r.personnel,
-      price: r.price,
-      category: r.category,
-    },
-    function (err, res) {
-      console.log("방정보 저장완료");
-    }
-  );
-  res.redirect("/main_logout");
+  if (r.title || r.date || r.location || r.personnel || r.price || r.category) {
+    res.send("<script>location.href='/makeRoom'; alert('제대로 입력하세요!');</script>");
+  } else {
+    db.collection("Room").insertOne(
+      {
+        src: img_src,
+        title: r.title,
+        date: r.date,
+        location: r.location,
+        personnel: r.personnel,
+        price: r.price,
+        category: r.category,
+      },
+      function (err, res) {
+        console.log("방정보 저장완료");
+      }
+    );
+    res.redirect("/main_logout");
+  }
 });
 
 // 채팅
