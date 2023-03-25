@@ -136,6 +136,9 @@ app.use("/static", express.static(__dirname + "/static"));
 app.get("/text", (req, res) => {
   res.render("text");
 });
+// app.get("/DetailedPage", (req, res) => {
+//   res.render("DetailedPage");
+// });
 // 로딩페이지
 app.get("/loading", (req, res) => {
   res.render("loading");
