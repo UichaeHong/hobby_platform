@@ -10,6 +10,7 @@ const passport = require('passport')
 const passportConfig = require('./passport')
 const session = require("express-session");
 
+app.use(express.urlencoded({extended:true}))
 passportConfig()
 
 app.use(cookieParser(process.env.COOKIE_SECRET))

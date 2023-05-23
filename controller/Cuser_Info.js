@@ -18,7 +18,7 @@ exports.Login = (req,res,next)=>{
                 console.log(loginError)
                 return next(loginError)
             }
-            return res.redirect('/')
+            return res.redirect('/main')
         })
     })(req,res,next)
 }
@@ -33,6 +33,7 @@ exports.Logout = (req,res)=>{
 // 회원가입
 exports.Signup = async (req, res) => {
     const r = req.body;
+    console.log(r)
     let cryptoPassword = await createCryptoPassword(r.pw);
     const result = await User_Info.find({id : r.id})
     console.log('res!: ',result)

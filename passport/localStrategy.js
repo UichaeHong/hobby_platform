@@ -9,10 +9,10 @@ module.exports = ()=>{
     passwordField : 'pw',
   }, async(user_id,user_pw,done)=>{
     try{
-      let result = User_Info.findOne({email:user_id})
+      let result = await User_Info.findOne({email:user_id})
       if(result){
-        const getcry = getCryptoPassword(user_pw,result.salt)
-        if(getcry == result.pw){
+        const getcry = await getCryptoPassword(user_pw,result.salt)
+        if(getcry.password == result.pw){
           done(null,result)
         }
         else{
