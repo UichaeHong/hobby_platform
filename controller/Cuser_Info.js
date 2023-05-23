@@ -24,10 +24,18 @@ exports.Login = (req,res,next)=>{
 }
 
 // 로그아웃
-exports.Logout = (req,res)=>{
-    req.logout()
-    req.session.destroy()
-    res.redirect('/')
+exports.Logout = (req,res,next)=>{
+    req.logout((err)=>{
+        if(err){
+            return next(err)
+        }
+        else{
+            req.session.destroy(()=>{
+                res.clearCookie('connect.sid')
+                res.redirect('/main')
+            })
+        }
+    })
 }
 
 // 회원가입

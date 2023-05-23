@@ -6,6 +6,6 @@ const {logined} = require('../routes/Auth')
 router.get('/login',controller_render.RenderLogin)
 router.get('/signup',controller_render.RenderSignup)
 router.get('/makeRoom',logined,controller_render.RenderMakeRoom)
-router.get('/chat',logined,controller_render.RenderChat)
+router.get('/chat',controller_render.RenderChat)
 
 module.exports = router;

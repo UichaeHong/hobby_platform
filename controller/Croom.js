@@ -1,6 +1,6 @@
 const Room = require('../models/Room')
 const mongoose = require('mongoose');
-let db = mongoose.connect(process.env.DB_URL, { dbName: 'CODINGON' });
+const ObjectId = require('mongodb').ObjectID;
 
 // 달력 및 인풋 위한 데이터 받아오기
 exports.GetData = async (req,res) =>{
@@ -18,6 +18,7 @@ exports.GetInitData = async (req, res) => {
 // 방 생성
 exports.MakeRoom = async (req,res)=>{
     const r = req.body
+    console.log(r)
     let img_src;
     switch (r.category) {
         case "축구":
@@ -35,7 +36,7 @@ exports.MakeRoom = async (req,res)=>{
             break;
     }
 
-    if(r.title || r.date || r.location || r.personnel || r.price || r.category) {
+    if(r.title=='' || r.date=='' || r.location=='' || r.personnel=='' || r.price=='' || r.category=='') {
         res.send("<script>location.href='/makeRoom'; alert('제대로 입력하세요!');</script>");
     }
     else{
@@ -49,6 +50,7 @@ exports.MakeRoom = async (req,res)=>{
             category: r.category,
         }).then((result)=>{
             console.log('방정보 저장')
+            res.redirect('/main')
         }).catch((error)=>{
             console.log(error)
         })
@@ -59,10 +61,9 @@ exports.MakeRoom = async (req,res)=>{
 exports.DetailPage = async (req, res) => {
     let getId = req.params.id;
     console.log("getId:", getId);
-    await Room.findOne({ _id: mongodb.ObjectId(getId)}.then((result)=>{
-            console.log("방정보", res);
-            res.render("DetailedPage", { data: result});
-        })
-    );
+    await Room.findOne({ _id: ObjectId(getId)}).then((result)=>{
+        console.log("방정보", res);
+        res.render("DetailedPage", { data: result});
+    })
 };
 
