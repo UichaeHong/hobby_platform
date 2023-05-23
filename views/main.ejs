@@ -5,12 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>메인</title>
+    <link rel="stylesheet" href="./../static/css/common.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
     />
-    <link rel="stylesheet" href="./../static/css/common.css" />
-
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
     <script
@@ -25,6 +24,320 @@
       crossorigin="anonymous"
     ></script>
     <script src="../static/js/main.js" defer></script>
+
+    <style>
+      .mySwiper {
+        margin-top: 20px;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+
+      .swiper {
+        width: 100%;
+        height: 100%;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+      .swiper-pagination {
+        width: 100px;
+        height: 40px;
+        background: rgba(0, 0, 0, 0.4);
+        color: #fff;
+        display: flex;
+        left: 50%;
+        border-radius: 20px;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        letter-spacing: 2px;
+        transform: translateX(-50%);
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .category_list {
+        display: flex;
+        margin-top: 60px;
+        gap: 20px;
+        justify-content: center;
+      }
+      .category_list li {
+        position: relative;
+        /* height: 40px; */
+      }
+      .category_list li.current {
+        font-size: 18px;
+        font-weight: 700;
+        align-items: flex-end;
+        /* text-decoration: underline; */
+      }
+      .category_list li.current::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        display: inline-block;
+        width: 100%;
+        height: 2px;
+        background-color: #333;
+      }
+      .datalist_wrap {
+        display: flex;
+        width: 100%;
+        gap: 60px;
+        margin-top: 60px;
+      }
+      .datalist_lbox {
+        width: 300px;
+        min-width: 350px;
+      }
+      .datalist_rbox {
+        width: 100%;
+      }
+      .datalist {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px 30px;
+      }
+      .datalist li {
+        width: calc(33.3333% - 22px);
+        /* border: 1px solid #ccc; */
+      }
+      .datalist li:nth-child(3n) {
+        width: calc(33.4% - 22px);
+      }
+      .datalist li:hover .list_box .img_box img {
+        scale: 1.2;
+      }
+      .list_box {
+        position: relative;
+      }
+      .list_box .img_box {
+        height: 267px;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .list_box .img_box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.2s all;
+      }
+      .list_box .info {
+        padding: 20px 0;
+      }
+      .list_box .info p {
+        margin-top: 10px;
+      }
+      .list_box .info p:first-child {
+        margin-top: 0;
+      }
+      .list_box .info p i {
+        width: 16px;
+        text-align: center;
+        margin-right: 5px;
+        color: #7a7a7a;
+      }
+      .info .title {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 1.3;
+        word-break: keep-all;
+        /* min-height: 52px; */
+      }
+      .info strong {
+        font-weight: 500;
+      }
+      .small_badge {
+        display: inline-block;
+        min-width: 28px;
+        height: 20px;
+        background: #333;
+        color: #fff;
+        padding: 0 10px;
+        line-height: 20px;
+        font-weight: 500;
+        border-radius: 10px;
+        box-sizing: border-box;
+      }
+      .badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: inline-block;
+        height: 30px;
+        padding: 0 10px;
+        line-height: 30px;
+        font-weight: 500;
+        color: #fff;
+        background-color: #3e85ef;
+      }
+      .badge.type01 {
+        background-color: #ff4949;
+      }
+      .badge.type02 {
+        background-color: #ccc;
+      }
+      /* 달력 */
+      .calendar_box td {
+        position: relative;
+        width: 45px;
+        height: 45px;
+        vertical-align: middle;
+      }
+      .calendar_box {
+        position: sticky;
+        top: 30px;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 20px;
+      }
+      .calendar {
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      .calendar > thead > tr:first-child > td {
+        font-weight: bold;
+        font-style: 20px;
+      }
+
+      .calendar > thead > tr:last-child > td {
+        background-color: #fff;
+        color: #333;
+        font-weight: 500;
+      }
+
+      .pastDay {
+        background-color: white;
+        opacity: 0.3;
+      }
+
+      .today {
+      }
+      .today::before,
+      .choiceDay::before {
+        content: "";
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background-color: #ffca64;
+        cursor: pointer;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+      }
+
+      .futureDay {
+        cursor: pointer;
+      }
+      .futureDay.choiceDay,
+      .today.choiceDay {
+        color: #fff !important;
+        cursor: pointer;
+      }
+      .choiceDay::before {
+        background-color: #3e85ef;
+      }
+
+      /* 탭메뉴 */
+      .tab-content {
+        /* display: none; */
+      }
+      .tab-content.current {
+        display: block;
+      }
+
+      #talk {
+        color: red;
+        cursor: pointer;
+      }
+
+      @media screen and (max-width: 1310px) {
+        header .header_inner {
+          width: 100%;
+          padding: 0 20px;
+        }
+        footer .footer_inner {
+          width: 100%;
+          padding: 60px 20px;
+        }
+        .inner {
+          width: 100%;
+          padding: 0 20px;
+        }
+      }
+      @media screen and (max-width: 1200px) {
+        .datalist li,
+        .datalist li:nth-child(3n) {
+          width: calc(50% - 15px);
+        }
+        .list_box .img_box {
+          height: 230px;
+        }
+      }
+      @media screen and (max-width: 1020px) {
+        .content {
+          padding-bottom: 50px;
+        }
+        .datalist {
+          gap: 20px 30px;
+        }
+        .datalist_wrap {
+          margin-top: 40px;
+          flex-direction: column;
+          gap: 40px;
+        }
+        .datalist_lbox {
+          width: 100%;
+          min-width: auto;
+        }
+        .calendar {
+          width: 100%;
+        }
+        .category_list {
+          margin-top: 40px;
+        }
+        .swiper-pagination {
+          width: 70px;
+          height: 30px;
+          font-size: 14px;
+        }
+        .input_search input:focus {
+          width: 200px;
+        }
+      }
+      @media screen and (max-width: 560px) {
+        .datalist li,
+        .datalist li:nth-child(3n) {
+          width: 100%;
+        }
+        .list_box .info .title {
+          font-size: 18px;
+          font-weight: 700;
+        }
+        .list_box .info p {
+          font-size: 14px;
+        }
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -72,7 +385,7 @@
         </script>
 
         <ul class="category_list">
-          <li value="0" class="current" data-tab="tab-1" id="all">
+          <li value="0" class="current" data-tab="tab-1">
             <a href="#">전체보기</a>
           </li>
           <li value="1" data-tab="tab-2"><a href="#">축구</a></li>
@@ -124,7 +437,7 @@
         <div id="tab-4" class="tab-content"></div>
         <div id="tab-5" class="tab-content"></div>
 
-        <button type="button" class="chat">채팅하기</button>
+        <a href='chat'><button type="button" class="chat"></button></a>
       </div>
     </div>
     <script src="../static/js/main.js"></script>
@@ -137,3 +450,17 @@
     </footer>
   </body>
 </html>
+<style>
+  .chat {
+    position: fixed;
+    right: 20px;
+    z-index: 10;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: url(../static/img/chat.png) top 10px center no-repeat;
+    background-size: 100%;
+    bottom: 50px;
+    font-size: 0;
+  }
+</style>

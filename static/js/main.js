@@ -80,6 +80,17 @@ window.onload = async () => {
   room_data = room_data.data.data;
   // 메인페이지 생성
   makeRoom(room_data);
+  let cookies = document.cookie
+  if(cookies){
+    $('.login i').replaceWith('<i class="fa-solid fa-arrow-right-from-bracket"></i>')
+    $('.login').attr('href','/logout')
+    $('.login').attr('class','logout')
+    $('.category_list').append('<li value="5" data-tab="tab-6"><a href="/makeRoom">방만들기</a></li>')
+    console.log('있음')
+  }
+  else{
+    cosole.log('없음')
+  }
 }; // 웹 페이지가 로드되면 buildcalendar 실행
 
 $(".datalist").click((e) => {
