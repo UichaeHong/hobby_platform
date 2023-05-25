@@ -3,6 +3,7 @@ const controller_render = require('../controller/Crender')
 const router = express.Router()
 const {logined} = require('../routes/Auth')
 
+router.get('/main',controller_render.RenderMain)
 router.get('/login',controller_render.RenderLogin)
 router.get('/signup',controller_render.RenderSignup)
 router.get('/makeRoom',logined,controller_render.RenderMakeRoom)
