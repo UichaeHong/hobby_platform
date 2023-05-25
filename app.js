@@ -43,18 +43,6 @@ app.use("/static", express.static(__dirname + "/static"));
 const mongoose = require('mongoose');
 mongoose.connect(process.env.DB_URL, { dbName: 'CODINGON' });
 
-
-
-
-// =========================================
-
-
-// 로그인 실패 (뺄거)
-// app.get("/login_fail", (req, res) => {
-//   res.render("login_fail");
-// });
-
-// ====================================
 // 채팅 부분
 io.on("connection", (socket)=>{
   console.log("연결됨");

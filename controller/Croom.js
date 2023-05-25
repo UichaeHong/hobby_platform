@@ -11,7 +11,6 @@ exports.GetData = async (req,res) =>{
 // 메인페이지(초기 데이터 삽입)
 exports.GetInitData = async (req, res) => {
     const result = await Room.find({})
-    console.log('result: ',result)
     res.render("main", { data: result });
 };
 

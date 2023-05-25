@@ -1,3 +1,6 @@
+exports.RenderMain = (req,res) =>{
+    res.render('main')
+}
 // 로그인 페이지
 exports.RenderLogin = (req, res) => {
     res.render("login");
